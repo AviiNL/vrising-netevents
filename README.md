@@ -1,6 +1,12 @@
 # NetEvents
 
-# Using the Git Hook
+## Work in Progress
+
+This project is an active work in progress.
+
+The end goal of this project is to wrap every network event in an easy to use C# Event API.
+
+## Using the Git Hook
 
 Copy/Paste `.env.example` to `.env` and change the variable to your unhollowed directory
 
