@@ -197,29 +197,24 @@ internal static class SerializationHooks
         var em = *(EntityManager*)&entityManager;
         var realEntity = *(Entity*)&entity;
         
-        var networkIdSystem = WorldUtils.GetWorld().GetExistingSystem<NetworkIdSystem>();
-
         switch (NetworkEvents.GetNetworkEventName(eventId))
         {
             case "UserDownedServerEvent":
-                var data = em.GetComponentData<UserDownedServerEvent>(realEntity);
-
-                var targetEntity = networkIdSystem._NetworkIdToEntityMap[data.Target];
-                var sourceEntity = networkIdSystem._NetworkIdToEntityMap[data.Source];
-
-                var targetPlayerCharacter = em.GetComponentData<PlayerCharacter>(targetEntity);
-                var sourcePlayerCharacter = em.GetComponentData<PlayerCharacter>(sourceEntity);
-
-                var userDownedServer = new UserDownedServerEventArgs(
-                    targetPlayerCharacter,
-                    sourcePlayerCharacter
-                );
+                var userDownedServer = UserDownedServerEventArgs.From(em, realEntity);
 
                 ServerEvent.InvokeEvent(userDownedServer);
 
                 if (userDownedServer.Cancelled)
                     return;
 
+                break;
+            case "UserKillServerEvent":
+                var userKillServer = UserKillServerEventArgs.From(em, realEntity);
+
+                ServerEvent.InvokeEvent(userKillServer);
+
+                if (userKillServer.Cancelled)
+                    return;
                 break;
             default:
                 Plugin.Logger?.LogWarning($"Unknown event: {eventId} ({NetworkEvents.GetNetworkEventName(eventId)})");
@@ -243,16 +238,7 @@ internal static class SerializationHooks
         switch (NetworkEvents.GetNetworkEventName(eventId))
         {
             case "ChatMessageEvent":
-
-                var messageType = netBufferIn.ReadByte();
-                var messageText = netBufferIn.ReadFixedString512();
-
-                var chatMessage = new ChatMessageEventArgs(
-                    (ChatMessageType)messageType,
-                    messageText,
-                    null
-                );
-
+                var chatMessage = ChatMessageEventArgs.From(netBufferIn);
                 chatMessage.UserEntity = serverClient!.UserEntity;
 
                 ServerEvent.InvokeEvent(chatMessage);
@@ -262,7 +248,7 @@ internal static class SerializationHooks
 
                 break;
             case "AdminAuthEvent":
-                var adminAuthEvent = new AdminAuthEventArgs();
+                var adminAuthEvent = AdminAuthEventArgs.From();
                 adminAuthEvent.UserEntity = serverClient!.UserEntity;
 
                 ServerEvent.InvokeEvent(adminAuthEvent);
@@ -272,7 +258,7 @@ internal static class SerializationHooks
 
                 break;
             case "DeauthAdminEvent":
-                var deauthEvent = new DeauthAdminEventArgs();
+                var deauthEvent = DeauthAdminEventArgs.From();
                 deauthEvent.UserEntity = serverClient!.UserEntity;
 
                 ServerEvent.InvokeEvent(deauthEvent);
@@ -301,12 +287,7 @@ internal static class SerializationHooks
 
             //     break;
             case "SetMapMarkerEvent":
-                var x = netBufferIn.ReadFloat();
-                var y = netBufferIn.ReadFloat();
-
-                var mapMarker = new SetMapMarkerEventArgs(
-                    new Unity.Mathematics.float2(x, y)
-                );
+                var mapMarker = SetMapMarkerEventArgs.From(netBufferIn);
 
                 mapMarker.UserEntity = serverClient!.UserEntity;
 
