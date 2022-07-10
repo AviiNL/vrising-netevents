@@ -31,6 +31,7 @@ internal static class SerializationHooks
     public unsafe delegate void DeserializeEvent(IntPtr commandBuffer, IntPtr netBuffer, DeserializeNetworkEventParams eventParams);
     public static DeserializeEvent? DeserializeOriginal;
 
+    // This dictonary is never used, however it's useful to be able to CTRL+Click the classes to see what fields needs to be propogated to the events.
     private static Dictionary<int, Type> _packetTypes = new()
     {
         { -1593849993, typeof(RestorStationEvent) },
