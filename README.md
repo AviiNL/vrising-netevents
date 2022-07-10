@@ -35,3 +35,8 @@ Start the server.
 
 ## Notes
 `App.cs` is included mainly for testing purposes, in a final build as library it should not be included.
+
+
+# Copyright
+
+The intended goal for this project is a Library that can be included in other projects. However I will not hold it against you if you prefer to cherry-pick features from this project to be included into your own projects to avoid the need for a dependency.
