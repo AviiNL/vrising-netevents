@@ -1,6 +1,6 @@
 using Unity.Entities;
 
-namespace NetEvents.EventArgs;
+namespace NetEvents.Events;
 
 public abstract class AbstractEventArgs
 {

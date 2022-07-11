@@ -1,7 +1,4 @@
-using ProjectM.Network;
-using Unity.Collections;
-
-namespace NetEvents.EventArgs;
+namespace NetEvents.Events.Incoming.DeauthAdmin;
 
 public class DeauthAdminEventArgs : AbstractEventArgs
 {

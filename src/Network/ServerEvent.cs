@@ -1,10 +1,20 @@
 using System;
-using NetEvents.EventArgs;
+using NetEvents.Events;
+using NetEvents.Events.Incoming.AdminAuth;
+using NetEvents.Events.Incoming.ChatMessage;
+using NetEvents.Events.Incoming.DeauthAdmin;
+using NetEvents.Events.Incoming.SetMapMarker;
+using NetEvents.Events.Outgoing.UserDowned;
 
 namespace NetEvents.Network;
 
 public static class ServerEvent
 {
+    static ServerEvent()
+    {
+        NetworkEventManager.RegisterEvents(typeof(ServerEvent));
+    }
+
     public delegate void ChatMessageEventHandler(ChatMessageEventArgs e);
     public static event ChatMessageEventHandler? ChatMessage;
 
@@ -20,28 +30,23 @@ public static class ServerEvent
     public delegate void UserDownedServerEventHandler(UserDownedServerEventArgs e);
     public static event UserDownedServerEventHandler? UserDownedServer;
 
-    private static Delegate? GetEventHandler(AbstractEventArgs args)
+    private static Delegate? GetEventHandler<T>() where T : AbstractEventArgs
     {
-        switch(args) {
-            case ChatMessageEventArgs _:
-                return ChatMessage;
-            case SetMapMarkerEventArgs _:
-                return SetMapMarker;
-            case AdminAuthEventArgs _:
-                return AdminAuth;
-            case DeauthAdminEventArgs _:
-                return DeauthAdmin;     
-            case UserDownedServerEventArgs _:
-                return UserDownedServer;           
-            default:
-                return null;
-        }
+        return typeof(T).Name switch
+        {
+            nameof(ChatMessageEventArgs) => ChatMessage,
+            nameof(SetMapMarkerEventArgs) => SetMapMarker,
+            nameof(AdminAuthEventArgs) => AdminAuth,
+            nameof(DeauthAdminEventArgs) => DeauthAdmin,
+            nameof(UserDownedServerEventArgs) => UserDownedServer,
+            _ => null
+        };
     }
 
-    internal static void InvokeEvent(AbstractEventArgs e)
+    internal static void InvokeEvent<T>(T e) where T : AbstractEventArgs
     {
         // Find which delegate takes e as parameter
-        var eventHandler = GetEventHandler(e);
+        var eventHandler = GetEventHandler<T>();
         if (eventHandler == null) return;
 
         // Invoke the event handler

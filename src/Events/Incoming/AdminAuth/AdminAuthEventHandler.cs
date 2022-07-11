@@ -1,0 +1,20 @@
+﻿using NetEvents.Network;
+using NetEvents.Network.Interfaces;
+using NetEvents.Network.Models;
+
+namespace NetEvents.Events.Incoming.AdminAuth;
+
+internal class AdminAuthEventHandler : IIncomingNetworkEventHandler
+{
+    public string EventName => EventNames.AdminAuthEvent;
+    public bool Enabled => true;
+
+    public void Handle(IncomingNetworkEvent networkEvent, out bool cancelled)
+    {
+        var adminAuthEvent = AdminAuthEventArgs.From();
+        adminAuthEvent.UserEntity = networkEvent.ServerClient!.UserEntity;
+
+        ServerEvent.InvokeEvent(adminAuthEvent);
+        cancelled = adminAuthEvent.Cancelled;
+    }
+}
