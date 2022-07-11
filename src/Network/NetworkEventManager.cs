@@ -12,24 +12,30 @@ internal static class NetworkEventManager
     private static readonly Dictionary<string, IIncomingNetworkEventHandler> IncomingEventHandlers = new();
     private static readonly Dictionary<string, IOutgoingNetworkEventHandler> OutgoingEventHandlers = new();
 
-    internal static void HandleEvent(IncomingNetworkEvent networkEvent, out bool cancelled)
+    internal static bool HandleEvent(IncomingNetworkEvent networkEvent, out bool cancelled)
     {
         cancelled = false;
         var eventName = NetworkEvents.GetNetworkEventName(networkEvent.EventId);
         if (IncomingEventHandlers.TryGetValue(eventName, out var eventHandler) && eventHandler.Enabled)
         {
             eventHandler.Handle(networkEvent, out cancelled);
+            return true;
         }
+
+        return false;
     }
 
-    internal static void HandleEvent(OutgoingNetworkEvent networkEvent, out bool cancelled)
+    internal static bool HandleEvent(OutgoingNetworkEvent networkEvent, out bool cancelled)
     {
         cancelled = false;
         var eventName = NetworkEvents.GetNetworkEventName(networkEvent.EventId);
         if (OutgoingEventHandlers.TryGetValue(eventName, out var eventHandler) && eventHandler.Enabled)
         {
             eventHandler.Handle(networkEvent, out cancelled);
+            return true;
         }
+
+        return false;
     }
 
     internal static void RegisterEvents(Type? type = null)

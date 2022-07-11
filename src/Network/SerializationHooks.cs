@@ -199,7 +199,9 @@ internal static class SerializationHooks
 
         var networkEvent = new OutgoingNetworkEvent(eventType, eventId, em, realEntity);
 
-        NetworkEventManager.HandleEvent(networkEvent, out var cancelled);
+        if (!NetworkEventManager.HandleEvent(networkEvent, out var cancelled)) {
+            Plugin.Logger?.LogError($"Unhandled outgoing event: {NetworkEvents.GetNetworkEventName(eventId)}");
+        }
 
         if (cancelled)
         {
@@ -217,7 +219,9 @@ internal static class SerializationHooks
 
         var networkEvent = new IncomingNetworkEvent(netBufferIn, eventId, eventParams);
 
-        NetworkEventManager.HandleEvent(networkEvent, out var cancelled);
+        if (!NetworkEventManager.HandleEvent(networkEvent, out var cancelled)) {
+            Plugin.Logger?.LogError($"Unhandled incoming event: {NetworkEvents.GetNetworkEventName(eventId)}");
+        }
         
         if (cancelled)
         {
