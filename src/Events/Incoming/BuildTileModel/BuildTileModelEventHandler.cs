@@ -25,13 +25,13 @@ internal class BuildTileModelEventHandler : IIncomingNetworkEventHandler
 
         var rotation = (TileRotation)netBufferIn.ReadByte();
 
-        //var networkId = NetworkSync.ReadNetworkId(ref netBufferIn);
+        var networkId = netBufferIn.ReadNetworkId();
 
         var buildTileModelEvent = new BuildTileModelEventArgs(
             prefabGuid,
             new float3(x, y, z),
             rotation,
-            null
+            networkId
         );
         
         buildTileModelEvent.UserEntity = networkEvent.ServerClient!.UserEntity;

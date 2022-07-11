@@ -20,7 +20,7 @@ internal class ChatMessageEventHandler : IIncomingNetworkEventHandler
         
         if (messageType == ChatMessageType.Whisper)
         {
-            receiverEntity = NetworkSync.ReadNetworkId(ref netBufferIn);
+            receiverEntity = netBufferIn.ReadNetworkId();
         }
 
         var chatMessage = new ChatMessageEventArgs(messageType, messageText, receiverEntity);

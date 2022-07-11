@@ -57,6 +57,10 @@ public class App : MonoBehaviour
     {
         var user = WorldUtils.GetWorld().EntityManager.GetComponentData<User>(e.UserEntity);
 
+        if (e.MessageType == ChatMessageType.Whisper) {
+            Plugin.Logger?.LogDebug($"Receiver network id: {e.ReceiverEntity}");
+        }
+
         Plugin.Logger?.LogMessage($"ChatMessageEventArgs: [{user.CharacterName}] {e.MessageType} {e.MessageText}");
     }
 }

@@ -10,9 +10,9 @@ public class BuildTileModelEventArgs : AbstractEventArgs
     public PrefabGUID PrefabGuid { get; }
     public float3 SpawnPosition { get; }
     public TileRotation SpawnTileRotation { get; }
-    public NetworkId? TransformedEntity { get; }
+    public NetworkId TransformedEntity { get; }
 
-    public BuildTileModelEventArgs(PrefabGUID prefabGuid, float3 spawnPosition, TileRotation spawnTileRotation, NetworkId? transformedEntity)
+    public BuildTileModelEventArgs(PrefabGUID prefabGuid, float3 spawnPosition, TileRotation spawnTileRotation, NetworkId transformedEntity)
     {
         PrefabGuid = prefabGuid;
         SpawnPosition = spawnPosition;
