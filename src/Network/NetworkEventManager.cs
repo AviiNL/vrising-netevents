@@ -24,8 +24,6 @@ internal static class NetworkEventManager
             if (args is AbstractIncomingEventArgs incomingArgs)
             {
                 incomingArgs.UserEntity = networkEvent.UserEntity;
-            } else {
-                Plugin.Logger?.LogError($"{eventFactory.EventName} event factory returned invalid event args type");
             }
 
             ServerEvent.InvokeEvent(args);
@@ -49,7 +47,7 @@ internal static class NetworkEventManager
         return false;
     }
 
-    public static void RegisterEvents(Type? type = null)
+    internal static void RegisterEvents(Type? type = null)
     {
         type ??= typeof(NetworkEventManager);
         var assembly = Assembly.GetAssembly(type);

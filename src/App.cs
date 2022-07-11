@@ -19,6 +19,13 @@ public class App : MonoBehaviour
         ServerEvent.BuildTileModel += this.OnBuildTileModel;
         ServerEvent.ActivateVBloodAbility += this.OnActivateVBloodAbility;
         ServerEvent.CreateClan_Request += this.OnCreateClan_Request;
+
+        ServerEvent.UserKillServer += this.OnUserKillServer;
+    }
+
+    public void OnUserKillServer(UserKillServerEventArgs e)
+    {
+        Plugin.Logger?.LogDebug("OnUserKillServer");
     }
 
     public void OnCreateClan_Request(CreateClan_RequestEventArgs e)

@@ -50,6 +50,11 @@ public static class ServerEvent
     /// </summary>
     public static event GenericEventDelegate<BuildTileModelEventArgs>? BuildTileModel;
 
+    /// <summary>
+    /// This event is fired when a player kills an NPC or a resource.
+    /// </summary>
+    public static event GenericEventDelegate<UserKillServerEventArgs>? UserKillServer;
+
 
     private static Delegate? GetEventHandler<T>(T e) where T : AbstractEventArgs
     {
@@ -63,6 +68,7 @@ public static class ServerEvent
             nameof(ActivateVBloodAbilityEventArgs) => ActivateVBloodAbility,
             nameof(BuildTileModelEventArgs) => BuildTileModel,
             nameof(CreateClan_RequestEventArgs) => CreateClan_Request,
+            nameof(UserKillServerEventArgs) => UserKillServer,
             _ => null
         };
     }
@@ -80,6 +86,4 @@ public static class ServerEvent
             if (e.Cancelled) return;
         }
     }
-
-
 }
