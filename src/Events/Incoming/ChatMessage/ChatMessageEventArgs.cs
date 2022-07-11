@@ -2,13 +2,13 @@ using ProjectM.Network;
 using Stunlock.Network;
 using Unity.Collections;
 
-namespace NetEvents.EventArgs;
+namespace NetEvents.Events.Incoming.ChatMessage;
 
 public class ChatMessageEventArgs : AbstractEventArgs
 {
-    public ChatMessageType MessageType {get; private set;}
-    public FixedString512 MessageText {get; private set;}
-    public NetworkId? ReceiverEntity {get; private set;}
+    public ChatMessageType MessageType { get; private set; }
+    public FixedString512 MessageText { get; private set; }
+    public NetworkId? ReceiverEntity { get; private set; }
 
     public ChatMessageEventArgs(ChatMessageType messageType, FixedString512 messageText, NetworkId? receiverEntity)
     {
@@ -22,7 +22,8 @@ public class ChatMessageEventArgs : AbstractEventArgs
         var messageType = (ChatMessageType)netBufferIn.ReadByte();
         var messageText = netBufferIn.ReadFixedString512();
         NetworkId? receiverEntity = null;
-        if (messageType == ChatMessageType.Whisper) {
+        if (messageType == ChatMessageType.Whisper)
+        {
             receiverEntity = NetworkSync.ReadNetworkId(ref netBufferIn);
         }
 

@@ -1,9 +1,10 @@
-﻿using System;
-using System.Threading.Tasks;
-using ProjectM.Network;
+﻿using ProjectM.Network;
 using NetEvents.Utils;
 using UnityEngine;
-using NetEvents.EventArgs;
+using NetEvents.Events.Incoming.AdminAuth;
+using NetEvents.Events.Incoming.ChatMessage;
+using NetEvents.Events.Incoming.DeauthAdmin;
+using NetEvents.Events.Outgoing.UserDowned;
 using NetEvents.Network;
 using ProjectM;
 

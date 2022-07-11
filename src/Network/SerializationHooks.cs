@@ -12,7 +12,7 @@ using static ProjectM.Network.ClanEvents_Client;
 using static ProjectM.Network.ClanEvents_Server;
 using static ProjectM.Network.InteractEvents_Client;
 using static ProjectM.TeleportEvents_ToServer;
-using NetEvents.EventArgs;
+using NetEvents.Network.Models;
 using Unity.Entities;
 
 namespace NetEvents.Network;
@@ -188,7 +188,7 @@ internal static class SerializationHooks
     }
 
     // Outgoing events (Server->Client)
-    public unsafe static void SerializeHook(IntPtr entityManager, UInt64 networkEventType, UInt64 netBufferOut, IntPtr entity)
+    public static unsafe void SerializeHook(IntPtr entityManager, UInt64 networkEventType, UInt64 netBufferOut, IntPtr entity)
     {
         var eventType = *(NetworkEventType*)&networkEventType;
 
@@ -196,112 +196,32 @@ internal static class SerializationHooks
 
         var em = *(EntityManager*)&entityManager;
         var realEntity = *(Entity*)&entity;
-        
-        switch (NetworkEvents.GetNetworkEventName(eventId))
+
+        var networkEvent = new OutgoingNetworkEvent(eventType, eventId, em, realEntity);
+
+        NetworkEventManager.HandleEvent(networkEvent, out var cancelled);
+
+        if (cancelled)
         {
-            case "UserDownedServerEvent":
-                var userDownedServer = UserDownedServerEventArgs.From(em, realEntity);
-
-                ServerEvent.InvokeEvent(userDownedServer);
-
-                if (userDownedServer.Cancelled)
-                    return;
-
-                break;
-            case "UserKillServerEvent":
-                var userKillServer = UserKillServerEventArgs.From(em, realEntity);
-
-                ServerEvent.InvokeEvent(userKillServer);
-
-                if (userKillServer.Cancelled)
-                    return;
-                break;
-            default:
-                Plugin.Logger?.LogWarning($"Unknown event: {eventId} ({NetworkEvents.GetNetworkEventName(eventId)})");
-                break;
+            return;
         }
-        
+
         SerializeOriginal!(entityManager, networkEventType, netBufferOut, entity);
     }
 
     // Incoming Events (Client->Server)
-    public unsafe static void DeserializeHook(IntPtr commandBuffer, IntPtr netBuffer, DeserializeNetworkEventParams eventParams)
+    public static unsafe void DeserializeHook(IntPtr commandBuffer, IntPtr netBuffer, DeserializeNetworkEventParams eventParams)
     {
         var netBufferIn = new NetBufferIn(new IntPtr((long)(netBuffer - 0x10)));
         var eventId = netBufferIn.ReadInt32();
 
-        var serverBootstrap = WorldUtils.GetWorld()?.GetExistingSystem<ServerBootstrapSystem>()!;
+        var networkEvent = new IncomingNetworkEvent(netBufferIn, eventId, eventParams);
 
-        var fromUserIndex = eventParams.FromUserIndex;
-        var serverClient = serverBootstrap._ApprovedUsersLookup[fromUserIndex];
-
-        switch (NetworkEvents.GetNetworkEventName(eventId))
+        NetworkEventManager.HandleEvent(networkEvent, out var cancelled);
+        
+        if (cancelled)
         {
-            case "ChatMessageEvent":
-                var chatMessage = ChatMessageEventArgs.From(netBufferIn);
-                chatMessage.UserEntity = serverClient!.UserEntity;
-
-                ServerEvent.InvokeEvent(chatMessage);
-
-                if (chatMessage.Cancelled)
-                    return;
-
-                break;
-            case "AdminAuthEvent":
-                var adminAuthEvent = AdminAuthEventArgs.From();
-                adminAuthEvent.UserEntity = serverClient!.UserEntity;
-
-                ServerEvent.InvokeEvent(adminAuthEvent);
-
-                if (adminAuthEvent.Cancelled)
-                    return;
-
-                break;
-            case "DeauthAdminEvent":
-                var deauthEvent = DeauthAdminEventArgs.From();
-                deauthEvent.UserEntity = serverClient!.UserEntity;
-
-                ServerEvent.InvokeEvent(deauthEvent);
-
-                if (deauthEvent.Cancelled)
-                    return;
-
-                break;
-            // case "KillEvent": // Managed to trigger this on "Unstuck" in the menu
-
-            //     var who = netBufferIn.ReadByte();
-            //     var filter = netBufferIn.ReadByte();
-            //     var userNetworkId = NetworkSync.ReadNetworkId(ref netBufferIn);
-
-            //     var killEvent = new KillEventArgs(
-            //         (KillWho)who,
-            //         (KillWhoFilter)filter,
-            //         userNetworkId
-            //     );
-            //     killEvent.UserEntity = serverClient!.UserEntity;
-
-            //     ServerEvent.InvokeEvent(killEvent);
-
-            //     if (killEvent.Cancelled)
-            //         return;
-
-            //     break;
-            case "SetMapMarkerEvent":
-                var mapMarker = SetMapMarkerEventArgs.From(netBufferIn);
-
-                mapMarker.UserEntity = serverClient!.UserEntity;
-
-                ServerEvent.InvokeEvent(mapMarker);
-
-                if (mapMarker.Cancelled)
-                    return;
-
-                break;
-            case "VivoxClientEvent":
-                break;
-            default:
-                Plugin.Logger?.LogWarning($"[{fromUserIndex}] Unknown event: {eventId} ({NetworkEvents.GetNetworkEventName(eventId)})");
-                break;
+            return;
         }
 
         netBufferIn.m_readPosition = 72;
