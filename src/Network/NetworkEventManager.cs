@@ -38,7 +38,7 @@ internal static class NetworkEventManager
         var assembly = Assembly.GetAssembly(type);
 
         var incomingType = typeof(IIncomingNetworkEventHandler);
-        var incomingTypes = assembly.GetTypes().Where(t => t.IsAssignableFrom(incomingType));
+        var incomingTypes = assembly.GetTypes().Where(t => incomingType.IsAssignableFrom(t) && !t.IsInterface && !t.IsAbstract);
         foreach (var incomingEventType in incomingTypes)
         {
             var instance = (IIncomingNetworkEventHandler)Activator.CreateInstance(incomingEventType);
@@ -46,7 +46,7 @@ internal static class NetworkEventManager
         }
 
         var outgoingType = typeof(IOutgoingNetworkEventHandler);
-        var outgoingTypes = assembly.GetTypes().Where(t => t.IsAssignableFrom(outgoingType));
+        var outgoingTypes = assembly.GetTypes().Where(t => outgoingType.IsAssignableFrom(t) && !t.IsInterface && !t.IsAbstract);
         foreach (var outgoingEventType in outgoingTypes)
         {
             var instance = (IOutgoingNetworkEventHandler)Activator.CreateInstance(outgoingEventType);
