@@ -1,8 +1,7 @@
 using ProjectM.Network;
-using Stunlock.Network;
 using Unity.Collections;
 
-namespace NetEvents.Events.Incoming.ChatMessage;
+namespace NetEvents.Events;
 
 public class ChatMessageEventArgs : AbstractEventArgs
 {

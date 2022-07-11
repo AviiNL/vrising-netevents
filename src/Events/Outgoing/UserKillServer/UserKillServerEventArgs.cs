@@ -1,8 +1,6 @@
-using NetEvents.Utils;
-using ProjectM.Network;
 using Unity.Entities;
 
-namespace NetEvents.Events.Outgoing.UserKillServer;
+namespace NetEvents.Events;
 
 public class UserKillServerEventArgs : AbstractEventArgs
 {

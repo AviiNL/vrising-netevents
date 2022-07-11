@@ -1,4 +1,4 @@
-namespace NetEvents.Events.Incoming.AdminAuth;
+namespace NetEvents.Events;
 
 public class AdminAuthEventArgs : AbstractEventArgs
 {

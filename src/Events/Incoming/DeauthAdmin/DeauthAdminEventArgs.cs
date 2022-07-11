@@ -1,4 +1,4 @@
-namespace NetEvents.Events.Incoming.DeauthAdmin;
+namespace NetEvents.Events;
 
 public class DeauthAdminEventArgs : AbstractEventArgs
 {

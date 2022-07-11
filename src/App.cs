@@ -1,12 +1,9 @@
 ﻿using ProjectM.Network;
 using NetEvents.Utils;
 using UnityEngine;
-using NetEvents.Events.Incoming.AdminAuth;
-using NetEvents.Events.Incoming.ChatMessage;
-using NetEvents.Events.Incoming.DeauthAdmin;
 using NetEvents.Network;
 using ProjectM;
-using NetEvents.Events.Outgoing.UserDownedServer;
+using NetEvents.Events;
 
 namespace NetEvents;
 
@@ -19,6 +16,18 @@ public class App : MonoBehaviour
         ServerEvent.AdminAuth += this.OnAdminAuth;
         ServerEvent.DeauthAdmin += this.OnAdminDeAuth;
         ServerEvent.UserDownedServer += this.OnUserDownedServer;
+        ServerEvent.BuildTileModel += this.OnBuildTileModel;
+        ServerEvent.ActivateVBloodAbility += this.OnActivateVBloodAbility;
+    }
+
+    public void OnActivateVBloodAbility(ActivateVBloodAbilityEventArgs e)
+    {
+        Plugin.Logger?.LogDebug("ActivateVBloodAbility");
+    }
+
+    public void OnBuildTileModel(BuildTileModelEventArgs e)
+    {
+        Plugin.Logger?.LogDebug($"OnBuildTileModel: {e.PrefabGuid} {e.SpawnPosition} {e.SpawnTileRotation} {e.TransformedEntity}");
     }
 
     public void OnUserDownedServer(UserDownedServerEventArgs e)

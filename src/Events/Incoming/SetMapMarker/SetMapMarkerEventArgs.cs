@@ -1,6 +1,6 @@
 using Unity.Mathematics;
 
-namespace NetEvents.Events.Incoming.SetMapMarker;
+namespace NetEvents.Events;
 
 public class SetMapMarkerEventArgs : AbstractEventArgs
 {
