@@ -17,7 +17,6 @@ using Unity.Entities;
 
 namespace NetEvents.Network;
 
-
 // Create Clan               = 2886047490 
 // Leave Clan/Clan Disbanded = 2215823930
 // Clan Changed              = 2112226552
