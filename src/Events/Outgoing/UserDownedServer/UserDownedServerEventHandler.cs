@@ -7,12 +7,12 @@ using ProjectM.Network;
 
 namespace NetEvents.Events.Outgoing.UserDownedServer
 {
-    internal class UserDownedServerEventHandler : IOutgoingNetworkEventHandler
+    internal class UserDownedServerEventHandler : IOutgoingNetworkEventFactory
     {
         public string EventName => "UserDownedServerEvent";
         public bool Enabled => true;
         
-        public void Handle(OutgoingNetworkEvent networkEvent, out bool cancelled)
+        public AbstractEventArgs Build(OutgoingNetworkEvent networkEvent)
         {
             var networkIdSystem = WorldUtils.GetWorld().GetExistingSystem<NetworkIdSystem>();
 
@@ -29,8 +29,7 @@ namespace NetEvents.Events.Outgoing.UserDownedServer
                 sourcePlayerCharacter
             );
 
-            ServerEvent.InvokeEvent(userDownedServer);
-            cancelled = userDownedServer.Cancelled;
+            return userDownedServer;
         }
     }
 }

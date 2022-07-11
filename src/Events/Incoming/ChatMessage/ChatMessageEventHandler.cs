@@ -5,12 +5,12 @@ using ProjectM.Network;
 
 namespace NetEvents.Events.Incoming.ChatMessage;
 
-internal class ChatMessageEventHandler : IIncomingNetworkEventHandler
+internal class ChatMessageEventHandler : IIncomingNetworkEventFactory
 {
     public string EventName => "ChatMessageEvent";
     public bool Enabled => true;
 
-    public void Handle(IncomingNetworkEvent networkEvent, out bool cancelled)
+    public AbstractEventArgs Build(IncomingNetworkEvent networkEvent)
     {
         var netBufferIn = networkEvent.NetBufferIn;
 
@@ -27,7 +27,6 @@ internal class ChatMessageEventHandler : IIncomingNetworkEventHandler
         
         chatMessage.UserEntity = networkEvent.ServerClient!.UserEntity;
 
-        ServerEvent.InvokeEvent(chatMessage);
-        cancelled = chatMessage.Cancelled;
+        return chatMessage;
     }
 }

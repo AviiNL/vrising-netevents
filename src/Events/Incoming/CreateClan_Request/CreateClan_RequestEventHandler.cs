@@ -5,12 +5,12 @@ using ProjectM.Network;
 
 namespace NetEvents.Events.Incoming.ChatMessage;
 
-internal class CreateClan_RequestEventHandler : IIncomingNetworkEventHandler
+internal class CreateClan_RequestEventHandler : IIncomingNetworkEventFactory
 {
     public string EventName => "CreateClan_Request";
     public bool Enabled => true;
 
-    public void Handle(IncomingNetworkEvent networkEvent, out bool cancelled)
+    public AbstractEventArgs Build(IncomingNetworkEvent networkEvent)
     {
         var netBufferIn = networkEvent.NetBufferIn;
 
@@ -21,7 +21,6 @@ internal class CreateClan_RequestEventHandler : IIncomingNetworkEventHandler
         
         createClan_Request.UserEntity = networkEvent.ServerClient!.UserEntity;
 
-        ServerEvent.InvokeEvent(createClan_Request);
-        cancelled = createClan_Request.Cancelled;
+        return createClan_Request;
     }
 }

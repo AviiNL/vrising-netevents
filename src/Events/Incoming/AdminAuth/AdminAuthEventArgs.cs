@@ -1,6 +1,6 @@
 namespace NetEvents.Events;
 
-public class AdminAuthEventArgs : AbstractEventArgs
+public class AdminAuthEventArgs : AbstractIncomingEventArgs
 {
     public override EventDirection EventDirection => EventDirection.ClientServer;
     

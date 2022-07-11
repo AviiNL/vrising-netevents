@@ -4,17 +4,16 @@ using NetEvents.Network.Models;
 
 namespace NetEvents.Events.Incoming.DeauthAdmin;
 
-internal class DeauthAdminEventHandler : IIncomingNetworkEventHandler
+internal class DeauthAdminEventHandler : IIncomingNetworkEventFactory
 {
     public string EventName => "DeauthAdminEvent";
     public bool Enabled => true;
 
-    public void Handle(IncomingNetworkEvent networkEvent, out bool cancelled)
+    public AbstractEventArgs Build(IncomingNetworkEvent networkEvent)
     {
         var deauthEvent = new DeauthAdminEventArgs();
         deauthEvent.UserEntity = networkEvent.ServerClient!.UserEntity;
 
-        ServerEvent.InvokeEvent(deauthEvent);
-        cancelled = deauthEvent.Cancelled;
+        return deauthEvent;
     }
 }

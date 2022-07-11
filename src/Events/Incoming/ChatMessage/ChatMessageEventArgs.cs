@@ -3,7 +3,7 @@ using Unity.Collections;
 
 namespace NetEvents.Events;
 
-public class ChatMessageEventArgs : AbstractEventArgs
+public class ChatMessageEventArgs : AbstractIncomingEventArgs
 {
     public override EventDirection EventDirection => EventDirection.ClientServer;
     

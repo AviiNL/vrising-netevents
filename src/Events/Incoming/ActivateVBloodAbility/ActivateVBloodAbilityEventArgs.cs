@@ -2,7 +2,7 @@ using ProjectM;
 
 namespace NetEvents.Events;
 
-public class ActivateVBloodAbilityEventArgs : AbstractEventArgs
+public class ActivateVBloodAbilityEventArgs : AbstractIncomingEventArgs
 {
     public override EventDirection EventDirection => EventDirection.ClientServer;
     public PrefabGUID AbilityGUID {get;}

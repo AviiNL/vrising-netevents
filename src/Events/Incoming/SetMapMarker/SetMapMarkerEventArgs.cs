@@ -2,7 +2,7 @@ using Unity.Mathematics;
 
 namespace NetEvents.Events;
 
-public class SetMapMarkerEventArgs : AbstractEventArgs
+public class SetMapMarkerEventArgs : AbstractIncomingEventArgs
 {
     public override EventDirection EventDirection => EventDirection.ClientServer;
     

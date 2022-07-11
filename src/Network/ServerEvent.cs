@@ -1,13 +1,5 @@
 using System;
 using NetEvents.Events;
-using NetEvents.Events.Incoming.ActivateVBloodAbility;
-using NetEvents.Events.Incoming.AdminAuth;
-using NetEvents.Events.Incoming.BuildTileModel;
-using NetEvents.Events.Incoming.ChatMessage;
-using NetEvents.Events.Incoming.DeauthAdmin;
-using NetEvents.Events.Incoming.SetMapMarker;
-using NetEvents.Events.Outgoing.UserDownedServer;
-
 namespace NetEvents.Network;
 
 public static class ServerEvent

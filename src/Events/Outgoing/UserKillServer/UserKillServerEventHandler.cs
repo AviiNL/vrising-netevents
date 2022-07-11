@@ -6,12 +6,12 @@ using ProjectM.Network;
 
 namespace NetEvents.Events.Outgoing.UserKillServer;
 
-internal class UserKillServerEventHandler : IOutgoingNetworkEventHandler
+internal class UserKillServerEventHandler : IOutgoingNetworkEventFactory
 {
     public string EventName => "UserKillServerEvent";
     public bool Enabled => true;
     
-    public void Handle(OutgoingNetworkEvent networkEvent, out bool cancelled)
+    public AbstractEventArgs Build(OutgoingNetworkEvent networkEvent)
     {
         var networkIdSystem = WorldUtils.GetWorld().GetExistingSystem<NetworkIdSystem>();
 
@@ -24,7 +24,7 @@ internal class UserKillServerEventHandler : IOutgoingNetworkEventHandler
             killerEntity,
             diedEntity
         );
-        ServerEvent.InvokeEvent(userKillServer);
-        cancelled = userKillServer.Cancelled;
+        
+        return userKillServer;
     }
 }

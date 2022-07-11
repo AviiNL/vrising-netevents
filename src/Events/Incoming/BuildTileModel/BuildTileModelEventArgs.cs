@@ -5,7 +5,7 @@ using Unity.Mathematics;
 
 namespace NetEvents.Events;
 
-public class BuildTileModelEventArgs : AbstractEventArgs
+public class BuildTileModelEventArgs : AbstractIncomingEventArgs
 {
     public override EventDirection EventDirection => EventDirection.ClientServer;
     

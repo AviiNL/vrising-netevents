@@ -4,12 +4,12 @@ using NetEvents.Network.Models;
 
 namespace NetEvents.Events.Incoming.SetMapMarker;
 
-internal class SetMapMarkerEventHandler : IIncomingNetworkEventHandler
+internal class SetMapMarkerEventFactory : IIncomingNetworkEventFactory
 {
     public string EventName => "SetMapMarkerEvent";
     public bool Enabled => true;
 
-    public void Handle(IncomingNetworkEvent networkEvent, out bool cancelled)
+    public AbstractEventArgs Build(IncomingNetworkEvent networkEvent)
     {
         var x = networkEvent.NetBufferIn.ReadFloat();
         var y = networkEvent.NetBufferIn.ReadFloat();
@@ -18,7 +18,6 @@ internal class SetMapMarkerEventHandler : IIncomingNetworkEventHandler
 
         mapMarker.UserEntity = networkEvent.ServerClient!.UserEntity;
 
-        ServerEvent.InvokeEvent(mapMarker);
-        cancelled = mapMarker.Cancelled;
+        return mapMarker;
     }
 }

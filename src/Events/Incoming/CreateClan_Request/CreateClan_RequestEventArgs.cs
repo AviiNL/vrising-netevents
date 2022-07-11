@@ -3,7 +3,7 @@ using Unity.Collections;
 
 namespace NetEvents.Events;
 
-public class CreateClan_RequestEventArgs : AbstractEventArgs
+public class CreateClan_RequestEventArgs : AbstractIncomingEventArgs
 {
     public override EventDirection EventDirection => EventDirection.ClientServer;
     

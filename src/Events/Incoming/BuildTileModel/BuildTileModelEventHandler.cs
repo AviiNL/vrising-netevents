@@ -9,12 +9,12 @@ using Unity.Transforms;
 
 namespace NetEvents.Events.Incoming.BuildTileModel;
 
-internal class BuildTileModelEventHandler : IIncomingNetworkEventHandler
+internal class BuildTileModelEventHandler : IIncomingNetworkEventFactory
 {
     public string EventName => "BuildTileModelEvent";
     public bool Enabled => true;
 
-    public void Handle(IncomingNetworkEvent networkEvent, out bool cancelled)
+    public AbstractEventArgs Build(IncomingNetworkEvent networkEvent)
     {
         var netBufferIn = networkEvent.NetBufferIn;
 
@@ -36,7 +36,6 @@ internal class BuildTileModelEventHandler : IIncomingNetworkEventHandler
 
         buildTileModelEvent.UserEntity = networkEvent.ServerClient!.UserEntity;
 
-        ServerEvent.InvokeEvent(buildTileModelEvent);
-        cancelled = buildTileModelEvent.Cancelled;
+        return buildTileModelEvent;
     }
 }

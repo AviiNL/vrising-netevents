@@ -5,14 +5,13 @@ using ProjectM;
 
 namespace NetEvents.Events.Incoming.ActivateVBloodAbility;
 
-internal class ActivateVBloodAbilityEventHandler : IIncomingNetworkEventHandler
+internal class ActivateVBloodAbilityEventHandler : IIncomingNetworkEventFactory
 {
     public string EventName => "ActivateVBloodAbilityEvent";
     public bool Enabled => true;
 
-    public void Handle(IncomingNetworkEvent networkEvent, out bool cancelled)
+    public AbstractEventArgs Build(IncomingNetworkEvent networkEvent)
     {
-
         var prefabGUID = new PrefabGUID((int)networkEvent.NetBufferIn.ReadUInt32());
         var primarySlot = networkEvent.NetBufferIn.ReadBoolean();
 
@@ -23,7 +22,6 @@ internal class ActivateVBloodAbilityEventHandler : IIncomingNetworkEventHandler
         
         activateVBloodAbilityEvent.UserEntity = networkEvent.ServerClient!.UserEntity;
 
-        ServerEvent.InvokeEvent(activateVBloodAbilityEvent);
-        cancelled = activateVBloodAbilityEvent.Cancelled;
+        return activateVBloodAbilityEvent;
     }
 }

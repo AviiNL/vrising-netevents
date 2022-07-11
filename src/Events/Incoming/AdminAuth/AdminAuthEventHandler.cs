@@ -4,18 +4,17 @@ using NetEvents.Network.Models;
 
 namespace NetEvents.Events.Incoming.AdminAuth;
 
-internal class AdminAuthEventHandler : IIncomingNetworkEventHandler
+internal class AdminAuthEventHandler : IIncomingNetworkEventFactory
 {
     public string EventName => "AdminAuthEvent";
     public bool Enabled => true;
 
-    public void Handle(IncomingNetworkEvent networkEvent, out bool cancelled)
+    public AbstractEventArgs Build(IncomingNetworkEvent networkEvent)
     {
         var adminAuthEvent = new AdminAuthEventArgs();
 
         adminAuthEvent.UserEntity = networkEvent.ServerClient!.UserEntity;
 
-        ServerEvent.InvokeEvent(adminAuthEvent);
-        cancelled = adminAuthEvent.Cancelled;
+        return adminAuthEvent;
     }
 }
