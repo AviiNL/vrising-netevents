@@ -51,9 +51,9 @@ public static class ServerEvent
     public static event GenericEventDelegate<BuildTileModelEventArgs>? BuildTileModel;
 
 
-    private static Delegate? GetEventHandler<T>() where T : AbstractEventArgs
+    private static Delegate? GetEventHandler<T>(T e) where T : AbstractEventArgs
     {
-        return typeof(T).Name switch
+        return e.GetType().Name switch
         {
             nameof(ChatMessageEventArgs) => ChatMessage,
             nameof(SetMapMarkerEventArgs) => SetMapMarker,
@@ -70,7 +70,7 @@ public static class ServerEvent
     internal static void InvokeEvent<T>(T e) where T : AbstractEventArgs
     {
         // Find which delegate takes e as parameter
-        var eventHandler = GetEventHandler<T>();
+        var eventHandler = GetEventHandler(e);
         if (eventHandler == null) return;
 
         // Invoke the event handler
