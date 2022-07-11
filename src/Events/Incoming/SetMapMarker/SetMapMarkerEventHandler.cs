@@ -6,7 +6,7 @@ namespace NetEvents.Events.Incoming.SetMapMarker;
 
 internal class SetMapMarkerEventHandler : IIncomingNetworkEventHandler
 {
-    public string EventName => EventNames.SetMapMarkerEvent;
+    public string EventName => "SetMapMarkerEvent";
     public bool Enabled => true;
 
     public void Handle(IncomingNetworkEvent networkEvent, out bool cancelled)

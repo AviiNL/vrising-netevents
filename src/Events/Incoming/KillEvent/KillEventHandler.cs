@@ -7,7 +7,7 @@
 
 //internal class KillEventHandler : IIncomingNetworkEventHandler
 //{
-//    public string EventName => EventNames.KillEvent;
+//    public string EventName =>  "KillEvent";
 //    public bool Enabled => true;
 
 //    public void Handle(IncomingNetworkEvent networkEvent, out bool cancelled)

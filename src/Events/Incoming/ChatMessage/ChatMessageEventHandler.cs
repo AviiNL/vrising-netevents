@@ -6,7 +6,7 @@ namespace NetEvents.Events.Incoming.ChatMessage;
 
 internal class ChatMessageEventHandler : IIncomingNetworkEventHandler
 {
-    public string EventName => EventNames.ChatMessageEvent;
+    public string EventName => "ChatMessageEvent";
     public bool Enabled => true;
 
     public void Handle(IncomingNetworkEvent networkEvent, out bool cancelled)

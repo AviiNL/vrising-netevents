@@ -6,7 +6,7 @@ namespace NetEvents.Events.Outgoing.UserDowned
 {
     internal class UserDownedServerEventHandler : IOutgoingNetworkEventHandler
     {
-        public string EventName => EventNames.UserDownedServerEvent;
+        public string EventName => "UserDownedServerEvent";
         public bool Enabled => true;
         public void Handle(OutgoingNetworkEvent networkEvent, out bool cancelled)
         {

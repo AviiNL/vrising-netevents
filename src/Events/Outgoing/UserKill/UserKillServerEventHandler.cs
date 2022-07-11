@@ -6,7 +6,7 @@ namespace NetEvents.Events.Outgoing.UserKill;
 
 internal class UserKillServerEventHandler : IOutgoingNetworkEventHandler
 {
-    public string EventName => EventNames.UserKillServerEvent;
+    public string EventName => "UserKillServerEvent";
     public bool Enabled => true;
     public void Handle(OutgoingNetworkEvent networkEvent, out bool cancelled)
     {

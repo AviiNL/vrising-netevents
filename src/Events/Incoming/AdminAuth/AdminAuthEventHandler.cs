@@ -6,7 +6,7 @@ namespace NetEvents.Events.Incoming.AdminAuth;
 
 internal class AdminAuthEventHandler : IIncomingNetworkEventHandler
 {
-    public string EventName => EventNames.AdminAuthEvent;
+    public string EventName => "AdminAuthEvent";
     public bool Enabled => true;
 
     public void Handle(IncomingNetworkEvent networkEvent, out bool cancelled)

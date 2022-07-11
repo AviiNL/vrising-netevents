@@ -6,7 +6,7 @@ namespace NetEvents.Events.Incoming.DeauthAdmin;
 
 internal class DeauthAdminEventHandler : IIncomingNetworkEventHandler
 {
-    public string EventName => EventNames.DeauthAdminEvent;
+    public string EventName => "DeauthAdminEvent";
     public bool Enabled => true;
 
     public void Handle(IncomingNetworkEvent networkEvent, out bool cancelled)
