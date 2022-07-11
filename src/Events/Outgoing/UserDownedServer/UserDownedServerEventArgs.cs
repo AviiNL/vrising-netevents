@@ -3,7 +3,7 @@ using ProjectM;
 using ProjectM.Network;
 using Unity.Entities;
 
-namespace NetEvents.Events.Outgoing.UserDowned;
+namespace NetEvents.Events.Outgoing.UserDownedServer;
 
 public class UserDownedServerEventArgs : AbstractEventArgs
 {

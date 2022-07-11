@@ -4,7 +4,7 @@ using NetEvents.Events.Incoming.AdminAuth;
 using NetEvents.Events.Incoming.ChatMessage;
 using NetEvents.Events.Incoming.DeauthAdmin;
 using NetEvents.Events.Incoming.SetMapMarker;
-using NetEvents.Events.Outgoing.UserDowned;
+using NetEvents.Events.Outgoing.UserDownedServer;
 
 namespace NetEvents.Network;
 

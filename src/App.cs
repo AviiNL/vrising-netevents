@@ -4,9 +4,9 @@ using UnityEngine;
 using NetEvents.Events.Incoming.AdminAuth;
 using NetEvents.Events.Incoming.ChatMessage;
 using NetEvents.Events.Incoming.DeauthAdmin;
-using NetEvents.Events.Outgoing.UserDowned;
 using NetEvents.Network;
 using ProjectM;
+using NetEvents.Events.Outgoing.UserDownedServer;
 
 namespace NetEvents;
 
@@ -46,8 +46,6 @@ public class App : MonoBehaviour
 
     public void OnChatMessage(ChatMessageEventArgs e)
     {
-        e.Cancelled = true;
-
         var user = WorldUtils.GetWorld().EntityManager.GetComponentData<User>(e.UserEntity);
 
         Plugin.Logger?.LogMessage($"ChatMessageEventArgs: [{user.CharacterName}] {e.MessageType} {e.MessageText}");

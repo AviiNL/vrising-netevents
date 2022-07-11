@@ -5,7 +5,7 @@ using NetEvents.Utils;
 using ProjectM;
 using ProjectM.Network;
 
-namespace NetEvents.Events.Outgoing.UserDowned
+namespace NetEvents.Events.Outgoing.UserDownedServer
 {
     internal class UserDownedServerEventHandler : IOutgoingNetworkEventHandler
     {

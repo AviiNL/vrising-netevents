@@ -4,7 +4,7 @@ using NetEvents.Network.Models;
 using NetEvents.Utils;
 using ProjectM.Network;
 
-namespace NetEvents.Events.Outgoing.UserKill;
+namespace NetEvents.Events.Outgoing.UserKillServer;
 
 internal class UserKillServerEventHandler : IOutgoingNetworkEventHandler
 {
