@@ -17,29 +17,47 @@ public static class ServerEvent
         NetworkEventManager.RegisterEvents(typeof(ServerEvent));
     }
 
-    public delegate void ChatMessageEventHandler(ChatMessageEventArgs e);
-    public static event ChatMessageEventHandler? ChatMessage;
+    public delegate void GenericEventDelegate<T>(T args) where T : AbstractEventArgs;
 
-    public delegate void SetMapMarkerEventHandler(SetMapMarkerEventArgs e);
-    public static event SetMapMarkerEventHandler? SetMapMarker;
+    /// <summary>
+    /// This event is fired when a player sends a chat message.
+    /// </summary>
+    public static event GenericEventDelegate<ChatMessageEventArgs>? ChatMessage;
 
-    public delegate void AdminAuthEventHandler(AdminAuthEventArgs e);
-    public static event AdminAuthEventHandler? AdminAuth;
+    /// <summary>
+    /// This event is fired when a player logs in as an admin.
+    /// </summary>
+    public static event GenericEventDelegate<AdminAuthEventArgs>? AdminAuth;
 
-    public delegate void DeauthAdminEventHandler(DeauthAdminEventArgs e);
-    public static event DeauthAdminEventHandler? DeauthAdmin;
+    /// <summary>
+    /// This event is fired when a player logs out as an admin.
+    /// </summary>
+    public static event GenericEventDelegate<DeauthAdminEventArgs>? DeauthAdmin;
 
-    public delegate void UserDownedServerEventHandler(UserDownedServerEventArgs e);
-    public static event UserDownedServerEventHandler? UserDownedServer;
+    /// <summary>
+    /// This event is fired when a player sets a waypoint on their map.
+    /// </summary>
+    public static event GenericEventDelegate<SetMapMarkerEventArgs>? SetMapMarker;
 
-    public delegate void ActivateVBloodAbilityEventHandler(ActivateVBloodAbilityEventArgs e);
-    public static event ActivateVBloodAbilityEventHandler? ActivateVBloodAbility;
+    /// <summary>
+    /// This event is fired when a player has been downed by another player in PvP.
+    public static event GenericEventDelegate<UserDownedServerEventArgs>? UserDownedServer;
 
-    public delegate void BuildTileModelEventHandler(BuildTileModelEventArgs e);
-    public static event BuildTileModelEventHandler? BuildTileModel;
+    /// <summary>
+    /// This event is fired when a player adds an ability to their hotbar.
+    /// </summary>
+    public static event GenericEventDelegate<ActivateVBloodAbilityEventArgs>? ActivateVBloodAbility;
 
-    public delegate void CreateClan_RequestHandler(CreateClan_RequestEventArgs e);
-    public static event CreateClan_RequestHandler? CreateClan_Request;
+    /// <summary>
+    /// This event is fired when a player creates a clan.
+    /// </summary>
+    public static event GenericEventDelegate<CreateClan_RequestEventArgs>? CreateClan_Request;
+
+    /// <summary>
+    /// This event is fired when a player builds a tile model.
+    /// </summary>
+    public static event GenericEventDelegate<BuildTileModelEventArgs>? BuildTileModel;
+
 
     private static Delegate? GetEventHandler<T>() where T : AbstractEventArgs
     {
