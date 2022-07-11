@@ -6,7 +6,6 @@ using ProjectM;
 using ProjectM.Network;
 using NetEvents.Utils;
 using Stunlock.Network;
-
 using static NetworkEvents_Serialize;
 using static ProjectM.Network.ClanEvents_Client;
 using static ProjectM.Network.ClanEvents_Server;
@@ -17,18 +16,14 @@ using Unity.Entities;
 
 namespace NetEvents.Network;
 
-// Create Clan               = 2886047490 
-// Leave Clan/Clan Disbanded = 2215823930
-// Clan Changed              = 2112226552
-
 /// Contains the serialization hooks for custom packets.
 internal static class SerializationHooks
 {
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public unsafe delegate void SerializeEvent(IntPtr entityManager, UInt64 networkEventType, UInt64 netBufferOut, IntPtr entity);
+    public delegate void SerializeEvent(IntPtr entityManager, UInt64 networkEventType, UInt64 netBufferOut, IntPtr entity);
     public static SerializeEvent? SerializeOriginal;
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public unsafe delegate void DeserializeEvent(IntPtr commandBuffer, IntPtr netBuffer, DeserializeNetworkEventParams eventParams);
+    public delegate void DeserializeEvent(IntPtr commandBuffer, IntPtr netBuffer, DeserializeNetworkEventParams eventParams);
     public static DeserializeEvent? DeserializeOriginal;
 
     // This dictonary is never used, however it's useful to be able to CTRL+Click the classes to see what fields needs to be propogated to the events.
@@ -174,11 +169,8 @@ internal static class SerializationHooks
 
     public static void Initialize()
     {
-        unsafe
-        {
-            _serializeDetour = NativeHookUtil.Detour(typeof(NetworkEvents_Serialize), "SerializeEvent", SerializeHook, out SerializeOriginal);
-            _deserializeDetour = NativeHookUtil.Detour(typeof(NetworkEvents_Serialize), "DeserializeEvent", DeserializeHook, out DeserializeOriginal);
-        }
+        _serializeDetour = NativeHookUtil.Detour(typeof(NetworkEvents_Serialize), "SerializeEvent", SerializeHook, out SerializeOriginal);
+        _deserializeDetour = NativeHookUtil.Detour(typeof(NetworkEvents_Serialize), "DeserializeEvent", DeserializeHook, out DeserializeOriginal);
     }
 
     public static void Uninitialize()
@@ -212,7 +204,7 @@ internal static class SerializationHooks
     }
 
     // Incoming Events (Client->Server)
-    public static unsafe void DeserializeHook(IntPtr commandBuffer, IntPtr netBuffer, DeserializeNetworkEventParams eventParams)
+    public static void DeserializeHook(IntPtr commandBuffer, IntPtr netBuffer, DeserializeNetworkEventParams eventParams)
     {
         var netBufferIn = new NetBufferIn(new IntPtr((long)(netBuffer - 0x10)));
         var eventId = netBufferIn.ReadInt32();
