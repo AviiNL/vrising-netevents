@@ -7,6 +7,8 @@ namespace NetEvents.Events;
 
 public class BuildTileModelEventArgs : AbstractEventArgs
 {
+    public override EventDirection EventDirection => EventDirection.ClientServer;
+    
     public PrefabGUID PrefabGuid { get; }
     public float3 SpawnPosition { get; }
     public TileRotation SpawnTileRotation { get; }

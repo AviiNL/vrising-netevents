@@ -12,6 +12,7 @@ internal class AdminAuthEventHandler : IIncomingNetworkEventHandler
     public void Handle(IncomingNetworkEvent networkEvent, out bool cancelled)
     {
         var adminAuthEvent = new AdminAuthEventArgs();
+
         adminAuthEvent.UserEntity = networkEvent.ServerClient!.UserEntity;
 
         ServerEvent.InvokeEvent(adminAuthEvent);

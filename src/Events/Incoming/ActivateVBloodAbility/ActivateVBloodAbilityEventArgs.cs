@@ -4,6 +4,7 @@ namespace NetEvents.Events;
 
 public class ActivateVBloodAbilityEventArgs : AbstractEventArgs
 {
+    public override EventDirection EventDirection => EventDirection.ClientServer;
     public PrefabGUID AbilityGUID {get;}
     public bool PrimarySlot {get;}
 

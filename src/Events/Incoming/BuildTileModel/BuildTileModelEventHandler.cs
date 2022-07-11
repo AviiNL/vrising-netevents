@@ -33,7 +33,7 @@ internal class BuildTileModelEventHandler : IIncomingNetworkEventHandler
             rotation,
             networkId
         );
-        
+
         buildTileModelEvent.UserEntity = networkEvent.ServerClient!.UserEntity;
 
         ServerEvent.InvokeEvent(buildTileModelEvent);

@@ -27,6 +27,8 @@ public class App : MonoBehaviour
 
     public void OnBuildTileModel(BuildTileModelEventArgs e)
     {
+        e.Cancelled = true; // This should prevent building all together.
+        
         Plugin.Logger?.LogDebug($"OnBuildTileModel: {e.PrefabGuid} {e.SpawnPosition} {e.SpawnTileRotation} {e.TransformedEntity}");
     }
 

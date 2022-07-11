@@ -4,6 +4,7 @@ namespace NetEvents.Events;
 
 public abstract class AbstractEventArgs
 {
-    public Entity UserEntity { get; set; }
+    public abstract EventDirection EventDirection { get; }
+    public Entity UserEntity { get; internal set; }
     public bool Cancelled { get; set; } = false;
 }
