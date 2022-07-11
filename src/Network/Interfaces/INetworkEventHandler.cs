@@ -1,6 +1,6 @@
 ﻿namespace NetEvents.Network.Interfaces;
 
-internal interface INetworkEventHandler
+public interface INetworkEventHandler
 {
     string EventName { get; }
     bool Enabled { get; }

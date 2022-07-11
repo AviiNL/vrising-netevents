@@ -38,7 +38,7 @@ internal static class NetworkEventManager
         return false;
     }
 
-    internal static void RegisterEvents(Type? type = null)
+    public static void RegisterEvents(Type? type = null)
     {
         type ??= typeof(NetworkEventManager);
         var assembly = Assembly.GetAssembly(type);

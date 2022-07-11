@@ -11,7 +11,7 @@ internal class DeauthAdminEventHandler : IIncomingNetworkEventHandler
 
     public void Handle(IncomingNetworkEvent networkEvent, out bool cancelled)
     {
-        var deauthEvent = DeauthAdminEventArgs.From();
+        var deauthEvent = new DeauthAdminEventArgs();
         deauthEvent.UserEntity = networkEvent.ServerClient!.UserEntity;
 
         ServerEvent.InvokeEvent(deauthEvent);

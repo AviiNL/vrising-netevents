@@ -2,7 +2,7 @@
 
 namespace NetEvents.Network.Interfaces;
 
-internal interface IIncomingNetworkEventHandler : INetworkEventHandler
+public interface IIncomingNetworkEventHandler : INetworkEventHandler
 {
     void Handle(IncomingNetworkEvent networkEvent, out bool cancelled);
 }

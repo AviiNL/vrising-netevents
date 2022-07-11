@@ -14,19 +14,4 @@ public class UserKillServerEventArgs : AbstractEventArgs
         this.Killer = Killer;
         this.Died = Died;
     }
-
-    internal static UserKillServerEventArgs From(EntityManager em, Entity entity)
-    {
-        var networkIdSystem = WorldUtils.GetWorld().GetExistingSystem<NetworkIdSystem>();
-
-        var userDownedServerEventData = em.GetComponentData<UserKillServerEvent>(entity);
-
-        var diedEntity = networkIdSystem._NetworkIdToEntityMap[userDownedServerEventData.Died];
-        var killerEntity = networkIdSystem._NetworkIdToEntityMap[userDownedServerEventData.Killer];
-
-        return new UserKillServerEventArgs(
-            killerEntity,
-            diedEntity
-        );
-    }
 }

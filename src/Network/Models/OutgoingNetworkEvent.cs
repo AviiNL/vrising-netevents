@@ -3,9 +3,9 @@ using Unity.Entities;
 
 namespace NetEvents.Network.Models;
 
-internal class OutgoingNetworkEvent
+public class OutgoingNetworkEvent
 {
-    public OutgoingNetworkEvent(NetworkEventType networkEventType, int eventId, EntityManager entityManager, Entity entity)
+    internal OutgoingNetworkEvent(NetworkEventType networkEventType, int eventId, EntityManager entityManager, Entity entity)
     {
         NetworkEventType = networkEventType;
         EventId = eventId;
@@ -13,8 +13,8 @@ internal class OutgoingNetworkEvent
         Entity = entity;
     }
 
-    internal NetworkEventType NetworkEventType { get; }
-    internal int EventId { get; }
-    internal EntityManager EntityManager { get; }
-    internal Entity Entity { get; }
+    public NetworkEventType NetworkEventType { get; }
+    public int EventId { get; }
+    public EntityManager EntityManager { get; }
+    public Entity Entity { get; }
 }

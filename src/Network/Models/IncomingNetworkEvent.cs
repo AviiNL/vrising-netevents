@@ -4,9 +4,9 @@ using Stunlock.Network;
 
 namespace NetEvents.Network.Models;
 
-internal class IncomingNetworkEvent
+public class IncomingNetworkEvent
 {
-    public IncomingNetworkEvent(NetBufferIn netBufferIn, int eventId, NetworkEvents_Serialize.DeserializeNetworkEventParams eventParams)
+    internal IncomingNetworkEvent(NetBufferIn netBufferIn, int eventId, NetworkEvents_Serialize.DeserializeNetworkEventParams eventParams)
     {
         NetBufferIn = netBufferIn;
         EventId = eventId;
@@ -16,9 +16,9 @@ internal class IncomingNetworkEvent
         ServerClient = serverBootstrap._ApprovedUsersLookup[FromUserIndex];
     }
 
-    internal NetBufferIn NetBufferIn { get; }
-    internal int EventId { get; }
+    public NetBufferIn NetBufferIn { get; }
+    public int EventId { get; }
     public NetworkEvents_Serialize.DeserializeNetworkEventParams EventParams { get; }
-    internal int FromUserIndex { get; }
-    internal ServerBootstrapSystem.ServerClient ServerClient { get; }
+    public int FromUserIndex { get; }
+    public ServerBootstrapSystem.ServerClient ServerClient { get; }
 }

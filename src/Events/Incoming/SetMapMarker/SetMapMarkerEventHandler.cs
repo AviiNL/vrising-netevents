@@ -11,7 +11,10 @@ internal class SetMapMarkerEventHandler : IIncomingNetworkEventHandler
 
     public void Handle(IncomingNetworkEvent networkEvent, out bool cancelled)
     {
-        var mapMarker = SetMapMarkerEventArgs.From(networkEvent.NetBufferIn);
+        var x = networkEvent.NetBufferIn.ReadFloat();
+        var y = networkEvent.NetBufferIn.ReadFloat();
+
+        var mapMarker = new SetMapMarkerEventArgs(new Unity.Mathematics.float2(x, y));
 
         mapMarker.UserEntity = networkEvent.ServerClient!.UserEntity;
 
