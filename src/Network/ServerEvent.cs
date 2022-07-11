@@ -38,6 +38,9 @@ public static class ServerEvent
     public delegate void BuildTileModelEventHandler(BuildTileModelEventArgs e);
     public static event BuildTileModelEventHandler? BuildTileModel;
 
+    public delegate void CreateClan_RequestHandler(CreateClan_RequestEventArgs e);
+    public static event CreateClan_RequestHandler? CreateClan_Request;
+
     private static Delegate? GetEventHandler<T>() where T : AbstractEventArgs
     {
         return typeof(T).Name switch
@@ -49,6 +52,7 @@ public static class ServerEvent
             nameof(UserDownedServerEventArgs) => UserDownedServer,
             nameof(ActivateVBloodAbilityEventArgs) => ActivateVBloodAbility,
             nameof(BuildTileModelEventArgs) => BuildTileModel,
+            nameof(CreateClan_RequestEventArgs) => CreateClan_Request,
             _ => null
         };
     }

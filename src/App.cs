@@ -18,6 +18,14 @@ public class App : MonoBehaviour
         ServerEvent.UserDownedServer += this.OnUserDownedServer;
         ServerEvent.BuildTileModel += this.OnBuildTileModel;
         ServerEvent.ActivateVBloodAbility += this.OnActivateVBloodAbility;
+        ServerEvent.CreateClan_Request += this.OnCreateClan_Request;
+    }
+
+    public void OnCreateClan_Request(CreateClan_RequestEventArgs e)
+    {
+        Plugin.Logger?.LogDebug("CreateClan_Request");
+        Plugin.Logger?.LogDebug($"ClanName: {e.ClanName}");
+        Plugin.Logger?.LogDebug($"ClanMotto: {e.ClanMotto}");
     }
 
     public void OnActivateVBloodAbility(ActivateVBloodAbilityEventArgs e)
