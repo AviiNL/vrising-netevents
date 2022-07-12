@@ -19,8 +19,17 @@ public class App : MonoBehaviour
         ServerEvent.BuildTileModel += this.OnBuildTileModel;
         ServerEvent.ActivateVBloodAbility += this.OnActivateVBloodAbility;
         ServerEvent.CreateClan_Request += this.OnCreateClan_Request;
+        ServerEvent.BecomeObserver += this.OnBecomeObserver;
 
         ServerEvent.UserKillServer += this.OnUserKillServer;
+    }
+
+    public void OnBecomeObserver(BecomeObserverEventArgs e)
+    {
+        var em = WorldUtils.GetWorld().EntityManager;
+        var user = em.GetComponentData<User>(e.UserEntity);
+
+        Plugin.Logger?.LogDebug($"OnBecomeObserver: {user.CharacterName} {e.Mode}");
     }
 
     public void OnUserKillServer(UserKillServerEventArgs e)

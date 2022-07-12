@@ -55,6 +55,10 @@ public static class ServerEvent
     /// </summary>
     public static event GenericEventDelegate<UserKillServerEventArgs>? UserKillServer;
 
+    /// <summary>
+    /// This event is fired when an admin changes their observer state
+    /// </summary>
+    public static event GenericEventDelegate<BecomeObserverEventArgs>? BecomeObserver;
 
     private static Delegate? GetEventHandler<T>(T e) where T : AbstractEventArgs
     {
@@ -69,6 +73,7 @@ public static class ServerEvent
             nameof(BuildTileModelEventArgs) => BuildTileModel,
             nameof(CreateClan_RequestEventArgs) => CreateClan_Request,
             nameof(UserKillServerEventArgs) => UserKillServer,
+            nameof(BecomeObserverEventArgs) => BecomeObserver,
             _ => null
         };
     }
