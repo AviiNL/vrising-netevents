@@ -51,7 +51,7 @@ public static class ServerEvent
     public static event GenericEventDelegate<BuildTileModelEventArgs>? BuildTileModel;
 
     /// <summary>
-    /// This event is fired when a player kills an NPC or a resource.
+    /// This event is fired when a player kills something, this includes resource nodes and foliage
     /// </summary>
     public static event GenericEventDelegate<UserKillServerEventArgs>? UserKillServer;
 
@@ -61,14 +61,19 @@ public static class ServerEvent
     public static event GenericEventDelegate<BecomeObserverEventArgs>? BecomeObserver;
 
     /// <summary>
-    /// This event is triggered when a player drops an item from their inventory by dragging it out of the window
+    /// This event is fired when a player drops an item from their inventory by dragging it out of the window
     /// </summary>
     public static event GenericEventDelegate<DropInventoryItemEventArgs>? DropInventoryItem;
 
     /// <summary>
-    /// This even triggers when a player drops an item by pressing spacebar on the item in their inventory
+    /// This event is fired when a player drops an item by pressing spacebar on the item in their inventory
     /// </summary>
     public static event GenericEventDelegate<DropItemAtSlotEventArgs>? DropItemAtSlot;
+
+    /// <summary>
+    /// This event is fired when a player dies (afaik only when a player uses "Unstuck" from the menu)
+    /// </summary>
+    public static event GenericEventDelegate<KillEventArgs>? KillEvent;
 
     private static Delegate? GetEventHandler<T>(T e) where T : AbstractEventArgs
     {
@@ -86,6 +91,7 @@ public static class ServerEvent
             nameof(BecomeObserverEventArgs) => BecomeObserver,
             nameof(DropInventoryItemEventArgs) => DropInventoryItem,
             nameof(DropItemAtSlotEventArgs) => DropItemAtSlot,
+            nameof(KillEventArgs) => KillEvent,
             _ => null
         };
     }
