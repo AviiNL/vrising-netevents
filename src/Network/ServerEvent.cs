@@ -65,6 +65,11 @@ public static class ServerEvent
     /// </summary>
     public static event GenericEventDelegate<DropInventoryItemEventArgs>? DropInventoryItem;
 
+    /// <summary>
+    /// This even triggers when a player drops an item by pressing spacebar on the item in their inventory
+    /// </summary>
+    public static event GenericEventDelegate<DropItemAtSlotEventArgs>? DropItemAtSlot;
+
     private static Delegate? GetEventHandler<T>(T e) where T : AbstractEventArgs
     {
         return e.GetType().Name switch
@@ -80,6 +85,7 @@ public static class ServerEvent
             nameof(UserKillServerEventArgs) => UserKillServer,
             nameof(BecomeObserverEventArgs) => BecomeObserver,
             nameof(DropInventoryItemEventArgs) => DropInventoryItem,
+            nameof(DropItemAtSlotEventArgs) => DropItemAtSlot,
             _ => null
         };
     }

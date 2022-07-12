@@ -2,7 +2,6 @@
 using NetEvents.Utils;
 using UnityEngine;
 using NetEvents.Network;
-using ProjectM;
 using NetEvents.Events;
 
 namespace NetEvents;
@@ -13,15 +12,15 @@ public class App : MonoBehaviour
     {
         Plugin.Logger?.LogDebug("App Start");
         
-        ServerEvent.DropInventoryItem += OnDropInventoryItem;
+        ServerEvent.DropItemAtSlot += testHandler;
     }
 
-    public void OnDropInventoryItem(DropInventoryItemEventArgs e)
+    public void testHandler(DropItemAtSlotEventArgs e)
     {
         var em = WorldUtils.GetWorld().EntityManager;
         var user = em.GetComponentData<User>(e.UserEntity);
 
-        Plugin.Logger?.LogDebug($"User {user.CharacterName} dropped item from {e.Inventory} at slot {e.Slot}");
+        Plugin.Logger?.LogDebug($"User {user.CharacterName} dropped item at slot {e.Slot}");
     }
 
 }
