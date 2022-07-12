@@ -60,6 +60,11 @@ public static class ServerEvent
     /// </summary>
     public static event GenericEventDelegate<BecomeObserverEventArgs>? BecomeObserver;
 
+    /// <summary>
+    /// This event is triggered when a player drops an item from their inventory by dragging it out of the window
+    /// </summary>
+    public static event GenericEventDelegate<DropInventoryItemEventArgs>? DropInventoryItem;
+
     private static Delegate? GetEventHandler<T>(T e) where T : AbstractEventArgs
     {
         return e.GetType().Name switch
@@ -74,6 +79,7 @@ public static class ServerEvent
             nameof(CreateClan_RequestEventArgs) => CreateClan_Request,
             nameof(UserKillServerEventArgs) => UserKillServer,
             nameof(BecomeObserverEventArgs) => BecomeObserver,
+            nameof(DropInventoryItemEventArgs) => DropInventoryItem,
             _ => null
         };
     }
