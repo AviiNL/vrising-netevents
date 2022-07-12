@@ -80,6 +80,11 @@ public static class ServerEvent
     /// </summary>
     public static event GenericEventDelegate<MoveAllItemsBetweenInventoriesEventArgs>? MoveAllItemsBetweenInventories;
 
+    /// <summary>
+    /// This event is fired when a player moves a single stack of items from one inventory to another
+    /// </summary>
+    public static event GenericEventDelegate<MoveItemBetweenInventoriesEventArgs>? MoveItemBetweenInventories;
+
     private static Delegate? GetEventHandler<T>(T e) where T : AbstractEventArgs
     {
         return e.GetType().Name switch
@@ -98,6 +103,7 @@ public static class ServerEvent
             nameof(DropItemAtSlotEventArgs) => DropItemAtSlot,
             nameof(KillEventArgs) => KillEvent,
             nameof(MoveAllItemsBetweenInventoriesEventArgs) => MoveAllItemsBetweenInventories,
+            nameof(MoveItemBetweenInventoriesEventArgs) => MoveItemBetweenInventories,
             _ => null
         };
     }
