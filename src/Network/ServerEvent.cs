@@ -85,6 +85,11 @@ public static class ServerEvent
     /// </summary>
     public static event GenericEventDelegate<MoveItemBetweenInventoriesEventArgs>? MoveItemBetweenInventories;
 
+    /// <summary>
+    /// This event is fired when a player moves an object via the build menu
+    /// </summary>
+    public static event GenericEventDelegate<MoveTileModelEventArgs>? MoveTileModel;
+
     private static Delegate? GetEventHandler<T>(T e) where T : AbstractEventArgs
     {
         return e.GetType().Name switch
@@ -104,6 +109,7 @@ public static class ServerEvent
             nameof(KillEventArgs) => KillEvent,
             nameof(MoveAllItemsBetweenInventoriesEventArgs) => MoveAllItemsBetweenInventories,
             nameof(MoveItemBetweenInventoriesEventArgs) => MoveItemBetweenInventories,
+            nameof(MoveTileModelEventArgs) => MoveTileModel,
             _ => null
         };
     }
