@@ -90,6 +90,11 @@ public static class ServerEvent
     /// </summary>
     public static event GenericEventDelegate<MoveTileModelEventArgs>? MoveTileModel;
 
+    /// <summary>
+    /// This event is fired when someone attempts to teleports around the map
+    /// </summary>
+    public static event GenericEventDelegate<PlayerTeleportDebugEventArgs>? PlayerTeleportDebug;
+
     private static Delegate? GetEventHandler<T>(T e) where T : AbstractEventArgs
     {
         return e.GetType().Name switch
@@ -110,6 +115,7 @@ public static class ServerEvent
             nameof(MoveAllItemsBetweenInventoriesEventArgs) => MoveAllItemsBetweenInventories,
             nameof(MoveItemBetweenInventoriesEventArgs) => MoveItemBetweenInventories,
             nameof(MoveTileModelEventArgs) => MoveTileModel,
+            nameof(PlayerTeleportDebugEventArgs) => PlayerTeleportDebug,
             _ => null
         };
     }

@@ -34,8 +34,10 @@ Start the server.
 
 
 ## Notes
-`App.cs` is included mainly for testing purposes, in a final build as library it should not be included.
 
+- `App.cs` is included mainly for testing purposes, in a final build as library it should not be included.
+- All events are triggered BEFORE executed on the server or BEFORE they are sent to a client. This means that the server can still decide to cancel the event.
+  - For instance, PlayerTeleportDebug is also triggered when someone CTRL+SHIFT+Clicks on the map without being admin, and thus is not actually teleported.
 
 # Copyright
 
