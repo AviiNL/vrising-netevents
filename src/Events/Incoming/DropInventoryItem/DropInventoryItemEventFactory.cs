@@ -16,8 +16,6 @@ internal class DropInventoryItemEventFactory : IIncomingNetworkEventFactory
 
         var dropInventoryItem = new DropInventoryItemEventArgs(inventory, slot);
 
-        dropInventoryItem.UserEntity = networkEvent.ServerClient!.UserEntity;
-
         return dropInventoryItem;
     }
 }

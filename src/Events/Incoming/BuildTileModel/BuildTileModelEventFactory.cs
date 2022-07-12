@@ -31,8 +31,6 @@ internal class BuildTileModelEventFactory : IIncomingNetworkEventFactory
             networkId
         );
 
-        buildTileModelEvent.UserEntity = networkEvent.ServerClient!.UserEntity;
-
         return buildTileModelEvent;
     }
 }

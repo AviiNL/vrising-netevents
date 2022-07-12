@@ -19,8 +19,6 @@ internal class CreateClan_RequestEventFactory : IIncomingNetworkEventFactory
 
         var createClan_Request = new CreateClan_RequestEventArgs(clanName.ToString(), clanMotto.ToString());
         
-        createClan_Request.UserEntity = networkEvent.ServerClient!.UserEntity;
-
         return createClan_Request;
     }
 }

@@ -12,8 +12,6 @@ internal class AdminAuthEventFactory : IIncomingNetworkEventFactory
     {
         var adminAuthEvent = new AdminAuthEventArgs();
 
-        adminAuthEvent.UserEntity = networkEvent.ServerClient!.UserEntity;
-
         return adminAuthEvent;
     }
 }

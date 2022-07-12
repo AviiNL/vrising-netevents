@@ -19,8 +19,6 @@ internal class ActivateVBloodAbilityEventFactory : IIncomingNetworkEventFactory
             prefabGUID,
             primarySlot
         );
-        
-        activateVBloodAbilityEvent.UserEntity = networkEvent.ServerClient!.UserEntity;
 
         return activateVBloodAbilityEvent;
     }

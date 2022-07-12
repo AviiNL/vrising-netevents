@@ -15,8 +15,6 @@ internal class BecomeObserverEventFactory : IIncomingNetworkEventFactory
 
         var becomeObserver = new BecomeObserverEventArgs(mode);
 
-        becomeObserver.UserEntity = networkEvent.ServerClient!.UserEntity;
-
         return becomeObserver;
     }
 }

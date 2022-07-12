@@ -16,8 +16,6 @@ internal class SetMapMarkerEventFactory : IIncomingNetworkEventFactory
 
         var mapMarker = new SetMapMarkerEventArgs(new Unity.Mathematics.float2(x, y));
 
-        mapMarker.UserEntity = networkEvent.ServerClient!.UserEntity;
-
         return mapMarker;
     }
 }

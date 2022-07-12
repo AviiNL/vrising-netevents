@@ -25,8 +25,6 @@ internal class ChatMessageEventFactory : IIncomingNetworkEventFactory
 
         var chatMessage = new ChatMessageEventArgs(messageType, messageText, receiverEntity);
         
-        chatMessage.UserEntity = networkEvent.ServerClient!.UserEntity;
-
         return chatMessage;
     }
 }

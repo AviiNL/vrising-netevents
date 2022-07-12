@@ -15,8 +15,6 @@ internal class DropItemAtSlotEventFactory : IIncomingNetworkEventFactory
 
         var dropItemAtSlot = new DropItemAtSlotEventArgs(slotIndex);
 
-        dropItemAtSlot.UserEntity = networkEvent.ServerClient!.UserEntity;
-
         return dropItemAtSlot;
     }
 }

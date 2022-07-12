@@ -22,8 +22,6 @@ internal class KillEventFactory : IIncomingNetworkEventFactory
             networkId
         );
 
-        killEvent.UserEntity = networkEvent.UserEntity;
-
         return killEvent;
     }
 }

@@ -12,7 +12,6 @@ internal class DeauthAdminEventFactory : IIncomingNetworkEventFactory
     public AbstractEventArgs Build(IncomingNetworkEvent networkEvent)
     {
         var deauthEvent = new DeauthAdminEventArgs();
-        deauthEvent.UserEntity = networkEvent.ServerClient!.UserEntity;
 
         return deauthEvent;
     }
