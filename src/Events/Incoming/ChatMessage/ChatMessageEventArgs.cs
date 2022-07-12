@@ -9,7 +9,7 @@ public class ChatMessageEventArgs : AbstractIncomingEventArgs
     public FixedString512 MessageText { get; private set; }
     public NetworkId? ReceiverEntity { get; private set; }
 
-    public ChatMessageEventArgs(ChatMessageType messageType, FixedString512 messageText, NetworkId? receiverEntity)
+    internal ChatMessageEventArgs(ChatMessageType messageType, FixedString512 messageText, NetworkId? receiverEntity)
     {
         MessageType = messageType;
         MessageText = messageText;

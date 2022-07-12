@@ -6,7 +6,7 @@ public class DropItemAtSlotEventArgs : AbstractIncomingEventArgs
 {
     public int Slot { get; }
 
-    public DropItemAtSlotEventArgs(int slotIndex)
+    internal DropItemAtSlotEventArgs(int slotIndex)
     {
         Slot = slotIndex;
     }

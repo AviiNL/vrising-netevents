@@ -12,7 +12,7 @@ public class BuildTileModelEventArgs : AbstractIncomingEventArgs
     public TileRotation SpawnTileRotation { get; }
     public NetworkId TransformedEntity { get; }
 
-    public BuildTileModelEventArgs(PrefabGUID prefabGuid, float3 spawnPosition, TileRotation spawnTileRotation, NetworkId transformedEntity)
+    internal BuildTileModelEventArgs(PrefabGUID prefabGuid, float3 spawnPosition, TileRotation spawnTileRotation, NetworkId transformedEntity)
     {
         PrefabGuid = prefabGuid;
         SpawnPosition = spawnPosition;

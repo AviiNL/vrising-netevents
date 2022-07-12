@@ -4,7 +4,7 @@ public class BecomeObserverEventArgs : AbstractIncomingEventArgs
 {    
     public int Mode {get;}
 
-    public BecomeObserverEventArgs(int mode)
+    internal BecomeObserverEventArgs(int mode)
     {
         Mode = mode;
     }
