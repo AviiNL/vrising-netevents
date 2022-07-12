@@ -1,13 +1,13 @@
-using ProjectM;
+using Unity.Entities;
 
 namespace NetEvents.Events;
 
 public class UserDownedServerEventArgs : AbstractEventArgs
 {
-    public PlayerCharacter Target;
-    public PlayerCharacter Source;
+    public Entity Target;
+    public Entity Source;
 
-    internal UserDownedServerEventArgs(PlayerCharacter Target, PlayerCharacter Source)
+    internal UserDownedServerEventArgs(Entity Target, Entity Source)
     {
         this.Target = Target;
         this.Source = Source;
