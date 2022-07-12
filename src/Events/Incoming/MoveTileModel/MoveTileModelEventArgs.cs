@@ -13,7 +13,7 @@ public class MoveTileModelEventArgs : AbstractIncomingEventArgs
 
     public TileRotation Rotation;
 
-    public MoveTileModelEventArgs(NetworkId tile, float3 position, TileRotation rotation)
+    internal MoveTileModelEventArgs(NetworkId tile, float3 position, TileRotation rotation)
     {
         Tile = tile;
         this.Position = position;

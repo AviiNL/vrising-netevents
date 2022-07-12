@@ -11,7 +11,7 @@ public class MoveItemBetweenInventoriesEventArgs : AbstractIncomingEventArgs
     public uint ToSlot { get; }
     public ItemTransferMethod TransferMethod { get; }
 
-    public MoveItemBetweenInventoriesEventArgs(NetworkId fromInventory, uint fromSlot, NetworkId toInventory, uint toSlot, ItemTransferMethod transferMethod)
+    internal MoveItemBetweenInventoriesEventArgs(NetworkId fromInventory, uint fromSlot, NetworkId toInventory, uint toSlot, ItemTransferMethod transferMethod)
     {
         FromInventory = fromInventory;
         FromSlot = fromSlot;

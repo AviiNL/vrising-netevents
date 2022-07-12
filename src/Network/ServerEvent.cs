@@ -95,6 +95,11 @@ public static class ServerEvent
     /// </summary>
     public static event GenericEventDelegate<PlayerTeleportDebugEventArgs>? PlayerTeleportDebug;
 
+    /// <summary>
+    /// This event is fired when a player requests to sort all items in an inventory
+    /// </summary>
+    public static event GenericEventDelegate<SortAllItemsEventArgs>? SortAllItems;
+
     private static Delegate? GetEventHandler<T>(T e) where T : AbstractEventArgs
     {
         return e.GetType().Name switch
@@ -116,6 +121,7 @@ public static class ServerEvent
             nameof(MoveItemBetweenInventoriesEventArgs) => MoveItemBetweenInventories,
             nameof(MoveTileModelEventArgs) => MoveTileModel,
             nameof(PlayerTeleportDebugEventArgs) => PlayerTeleportDebug,
+            nameof(SortAllItemsEventArgs) => SortAllItems,
             _ => null
         };
     }

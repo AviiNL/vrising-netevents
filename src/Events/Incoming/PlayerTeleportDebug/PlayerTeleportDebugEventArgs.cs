@@ -8,7 +8,7 @@ public class PlayerTeleportDebugEventArgs : AbstractIncomingEventArgs
     public float2 Position;
     public TeleportTarget Target;
 
-    public PlayerTeleportDebugEventArgs(float2 position, TeleportTarget target)
+    internal PlayerTeleportDebugEventArgs(float2 position, TeleportTarget target)
     {
         this.Position = position;
         this.Target = target;
