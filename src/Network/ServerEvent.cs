@@ -100,6 +100,11 @@ public static class ServerEvent
     /// </summary>
     public static event GenericEventDelegate<SortAllItemsEventArgs>? SortAllItems;
 
+    /// <summary>
+    /// This event is fired when a player selects an object in build mode
+    /// </summary>
+    public static event GenericEventDelegate<StartEditTileModelEventArgs>? StartEditTileModel;
+
     private static Delegate? GetEventHandler<T>(T e) where T : AbstractEventArgs
     {
         return e.GetType().Name switch
@@ -122,6 +127,7 @@ public static class ServerEvent
             nameof(MoveTileModelEventArgs) => MoveTileModel,
             nameof(PlayerTeleportDebugEventArgs) => PlayerTeleportDebug,
             nameof(SortAllItemsEventArgs) => SortAllItems,
+            nameof(StartEditTileModelEventArgs) => StartEditTileModel,
             _ => null
         };
     }
