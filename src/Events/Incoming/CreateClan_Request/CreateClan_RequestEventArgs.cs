@@ -4,9 +4,7 @@ using Unity.Collections;
 namespace NetEvents.Events;
 
 public class CreateClan_RequestEventArgs : AbstractIncomingEventArgs
-{
-    public override EventDirection EventDirection => EventDirection.ClientServer;
-    
+{    
     public string ClanName { get; }
     public string ClanMotto { get; }
 

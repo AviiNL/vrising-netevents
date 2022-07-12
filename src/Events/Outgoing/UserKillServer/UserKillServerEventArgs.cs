@@ -4,8 +4,6 @@ namespace NetEvents.Events;
 
 public class UserKillServerEventArgs : AbstractEventArgs
 {
-    public override EventDirection EventDirection => EventDirection.ServerClient;
-    
     public Entity Killer;
     public Entity Died;
 

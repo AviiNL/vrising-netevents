@@ -6,9 +6,7 @@ using Unity.Mathematics;
 namespace NetEvents.Events;
 
 public class BuildTileModelEventArgs : AbstractIncomingEventArgs
-{
-    public override EventDirection EventDirection => EventDirection.ClientServer;
-    
+{    
     public PrefabGUID PrefabGuid { get; }
     public float3 SpawnPosition { get; }
     public TileRotation SpawnTileRotation { get; }

@@ -4,8 +4,6 @@ namespace NetEvents.Events;
 
 public class UserDownedServerEventArgs : AbstractEventArgs
 {
-    public override EventDirection EventDirection => EventDirection.ServerClient;
-    
     public PlayerCharacter Target;
     public PlayerCharacter Source;
 
