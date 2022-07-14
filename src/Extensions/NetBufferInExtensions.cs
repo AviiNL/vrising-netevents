@@ -4,9 +4,9 @@ using Stunlock.Network;
 
 // namespace intentionally omitted
 
-public static class NetBufferInExtensions
+internal static class NetBufferInExtensions
 {
-    public static NetworkId ReadNetworkId(this NetBufferIn self)
+    internal static NetworkId ReadNetworkId(this NetBufferIn self)
     {
         var index = self.ReadRangedInteger(0, 0xffffe);
         var generation = self.ReadByte();
@@ -17,7 +17,7 @@ public static class NetBufferInExtensions
         };
     }
 
-    public static PrefabGUID ReadPrefabGUID(this NetBufferIn self)
+    internal static PrefabGUID ReadPrefabGUID(this NetBufferIn self)
     {
         return new PrefabGUID((int)self.ReadUInt32());
     }
