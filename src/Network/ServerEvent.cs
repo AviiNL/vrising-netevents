@@ -13,81 +13,81 @@ public static class ServerEvent
     public delegate void GenericEventDelegate<T>(T args) where T : AbstractEventArgs;
 
     /// <summary>
-    /// This event is fired when a player sends a chat message.
+    /// A player sends a chat message.
     /// </summary>
     public static event GenericEventDelegate<ChatMessageEventArgs>? ChatMessage;
 
     /// <summary>
-    /// This event is fired when a player logs in as an admin.
+    /// A player logs in as an admin.
     /// </summary>
     public static event GenericEventDelegate<AdminAuthEventArgs>? AdminAuth;
 
     /// <summary>
-    /// This event is fired when a player logs out as an admin.
+    /// A player logs out as an admin.
     /// </summary>
     public static event GenericEventDelegate<DeauthAdminEventArgs>? DeauthAdmin;
 
     /// <summary>
-    /// This event is fired when a player sets a waypoint on their map.
+    /// A player sets a waypoint on their map.
     /// </summary>
     public static event GenericEventDelegate<SetMapMarkerEventArgs>? SetMapMarker;
 
     /// <summary>
-    /// This event is fired when a player has been downed by another player in PvP.
+    /// A player has been downed by another player in PvP.
     public static event GenericEventDelegate<UserDownedServerEventArgs>? UserDownedServer;
 
     /// <summary>
-    /// This event is fired when a player adds an ability to their hotbar.
+    /// A player adds an ability to their hotbar.
     /// </summary>
     public static event GenericEventDelegate<ActivateVBloodAbilityEventArgs>? ActivateVBloodAbility;
 
     /// <summary>
-    /// This event is fired when a player creates a clan.
+    /// A player creates a clan.
     /// </summary>
     public static event GenericEventDelegate<CreateClan_RequestEventArgs>? CreateClan_Request;
 
     /// <summary>
-    /// This event is fired when a player builds a tile model.
+    /// A player builds a tile model.
     /// </summary>
     public static event GenericEventDelegate<BuildTileModelEventArgs>? BuildTileModel;
 
     /// <summary>
-    /// This event is fired when a player kills something, this includes resource nodes and foliage.
+    /// A player kills something, including resource nodes and foliage.
     /// </summary>
     public static event GenericEventDelegate<UserKillServerEventArgs>? UserKillServer;
 
     /// <summary>
-    /// This event is fired when an admin changes their observer state.
+    /// An admin changes their observer state.
     /// </summary>
     public static event GenericEventDelegate<BecomeObserverEventArgs>? BecomeObserver;
 
     /// <summary>
-    /// This event is fired when a player drops an item from their inventory by dragging it out of the window.
+    /// A player drops an item from their inventory by dragging it out of the window.
     /// </summary>
     public static event GenericEventDelegate<DropInventoryItemEventArgs>? DropInventoryItem;
 
     /// <summary>
-    /// This event is fired when a player drops an item by pressing spacebar on the item in their inventory.
+    /// A player drops an item by pressing spacebar on the item in their inventory.
     /// </summary>
     public static event GenericEventDelegate<DropItemAtSlotEventArgs>? DropItemAtSlot;
 
     /// <summary>
-    /// This event is fired when a player dies (afaik only when a player uses "Unstuck" from the menu)
+    /// A player dies (afaik only when a player uses "Unstuck" from the menu)
     /// </summary>
     public static event GenericEventDelegate<KillEventArgs>? KillEvent;
 
     /// <summary>
-    /// This event is fired when a player moves all items from one inventory to another.
+    /// A player moves all items from one inventory to another.
     /// </summary>
     public static event GenericEventDelegate<MoveAllItemsBetweenInventoriesEventArgs>? MoveAllItemsBetweenInventories;
 
     /// <summary>
-    /// This event is fired when a player moves a single stack of items from one inventory to another.
+    /// A player moves a single stack of items from one inventory to another.
     /// </summary>
     public static event GenericEventDelegate<MoveItemBetweenInventoriesEventArgs>? MoveItemBetweenInventories;
 
     /// <summary>
-    /// This event is fired when a player moves an object via the build menu.
+    /// A player moves an object via the build menu.
     /// </summary>
     public static event GenericEventDelegate<MoveTileModelEventArgs>? MoveTileModel;
 
@@ -97,69 +97,69 @@ public static class ServerEvent
     public static event GenericEventDelegate<PlayerTeleportDebugEventArgs>? PlayerTeleportDebug;
 
     /// <summary>
-    /// This event is fired when a player requests to sort all items in an inventory.
+    /// A player requests to sort all items in an inventory.
     /// </summary>
     public static event GenericEventDelegate<SortAllItemsEventArgs>? SortAllItems;
 
     /// <summary>
-    /// This event is fired when a player selects an object in build mode.
+    /// A player selects an object in build mode.
     /// </summary>
     public static event GenericEventDelegate<StartEditTileModelEventArgs>? StartEditTileModel;
 
     /// <summary>
-    /// This event is fired when a player stops interacting with an object, eg a chest or workstation.
+    /// A player stops interacting with an object, eg a chest or workstation.
     /// </summary>
     public static event GenericEventDelegate<StopInteractingWithObjectEventArgs>? StopInteractingWithObject;
 
     /// <summary>
-    /// This event is fired when a client requests authentication with Vivox VOIP Services.
+    /// A client requests authentication with Vivox VOIP Services.
     /// </summary>
     public static event GenericEventDelegate<VivoxClientEventArgs>? VivoxClient;
 
     /// <summary>
-    /// This event is fired when a player interacts with a workstation.
+    /// A player interacts with a workstation.
     /// </summary>
     public static event GenericEventDelegate<ShareRefinementEventArgs>? ShareRefinement;
 
     /// <summary>
-    /// This event is fired when a player equips an item.
+    /// A player equips an item.
     /// </summary>
     public static event GenericEventDelegate<EquipItemEventArgs>? EquipItem;
 
     /// <summary>
-    /// This event is fired when a player unequips an item.
+    /// A player unequips an item.
     /// </summary>
     public static event GenericEventDelegate<UnequipItemEventArgs>? UnequipItem;
 
     /// <summary>
-    /// This event is fired when a player uses default action (left ctrl) eg, exit shapeshift.
+    /// A player uses default action (left ctrl) eg, exit shapeshift.
     /// </summary>
     public static event GenericEventDelegate<UseDefaultActionEventArgs>? UseDefaultAction;
 
     /// <summary>
-    /// This event is fired when a player enters a shapeshift form.
+    /// A player enters a shapeshift form.
     /// </summary>
     public static event GenericEventDelegate<EnterShapeshiftEventArgs>? EnterShapeshift;
 
     /// <summary>
-    /// This event is fired when a player gives up after being downed.
+    /// A player gives up after being downed.
     /// For some reason this event triggers multiple times if the player holds X for longer.
     /// </summary>
     public static event GenericEventDelegate<GiveUpReviveEventArgs>? GiveUpRevive;
 
     /// <summary>
-    /// This event is fired when a player requests to respawn.
+    /// A player requests to respawn.
     /// </summary>
     public static event GenericEventDelegate<CharacterRespawnEventArgs>? CharacterRespawn;
 
     /// <summary>
-    /// This event is fired when a player tries to craft an item.
+    /// A player tries to craft an item.
     /// Also triggers when a player does not have the required materials.
     /// </summary>
     public static event GenericEventDelegate<StartCraftItemEventArgs>? StartCraftItem;
 
     /// <summary>
-    /// This event is fired when a player pressed "Compulsively Count" in their inventory.
+    /// A player pressed "Compulsively Count" in their inventory.
     /// </summary>
     public static event GenericEventDelegate<SmartMergeItemsBetweenInventoriesEventArgs>? SmartMergeItemsBetweenInventories;
 
