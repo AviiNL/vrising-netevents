@@ -120,14 +120,26 @@ public static class ServerEvent
     /// </summary>
     public static event GenericEventDelegate<ShareRefinementEventArgs>? ShareRefinement;
 
+    /// <summary>
+    /// This event is fired when a player equips an item
+    /// </summary>
+    public static event GenericEventDelegate<EquipItemEventArgs>? EquipItem;
+
+    /// <summary>
+    /// This event is fired when a player unequips an item
+    /// </summary>
+    public static event GenericEventDelegate<UnequipItemEventArgs>? UnequipItem;
+
     private static Delegate? GetEventHandler<T>(T e) where T : AbstractEventArgs
     {
         return e.GetType().Name switch
         {
             nameof(KillEventArgs) => KillEvent,
             nameof(AdminAuthEventArgs) => AdminAuth,
+            nameof(EquipItemEventArgs) => EquipItem,
             nameof(ChatMessageEventArgs) => ChatMessage,
             nameof(DeauthAdminEventArgs) => DeauthAdmin,
+            nameof(UnequipItemEventArgs) => UnequipItem,
             nameof(VivoxClientEventArgs) => VivoxClient,
             nameof(SetMapMarkerEventArgs) => SetMapMarker,
             nameof(SortAllItemsEventArgs) => SortAllItems,
