@@ -11,7 +11,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
     
-    <UnhollowedDllPath>/home/aviinl/Docker/docker-steamcmd-server/vrising/BepInEx/unhollowed/</UnhollowedDllPath>
+    <UnhollowedDllPath>/home/aviinl/Docker/VRisingServer/vrising/BepInEx/unhollowed/</UnhollowedDllPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -83,6 +83,6 @@
   </ItemGroup>
   
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="cp &quot;$(TargetPath)&quot; &quot;/home/aviinl/Docker/docker-steamcmd-server/vrising/BepInEx/unhollowed//../plugins/&quot;&#xD;&#xA;cp &quot;$(TargetDir)$(ProjectName).pdb&quot; &quot;/home/aviinl/Docker/docker-steamcmd-server/vrising/BepInEx/unhollowed//../plugins/&quot;" />
+    <Exec Command="cp &quot;$(TargetPath)&quot; &quot;/home/aviinl/Docker/VRisingServer/vrising/BepInEx/unhollowed//../plugins/&quot;&#xD;&#xA;cp &quot;$(TargetDir)$(ProjectName).pdb&quot; &quot;/home/aviinl/Docker/VRisingServer/vrising/BepInEx/unhollowed//../plugins/&quot;" />
   </Target>
 </Project>

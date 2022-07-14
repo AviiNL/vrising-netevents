@@ -105,6 +105,21 @@ public static class ServerEvent
     /// </summary>
     public static event GenericEventDelegate<StartEditTileModelEventArgs>? StartEditTileModel;
 
+    /// <summary>
+    /// This event is fired when a player stops interacting with an object, eg a chest or workstation
+    /// </summary>
+    public static event GenericEventDelegate<StopInteractingWithObjectEventArgs>? StopInteractingWithObject;
+
+    /// <summary>
+    /// This event is fired when a client requests authentication with Vivox VOIP Services
+    /// </summary>
+    public static event GenericEventDelegate<VivoxClientEventArgs>? VivoxClient;
+
+    /// <summary>
+    /// This event is fired when a player interacts with a workstation
+    /// </summary>
+    public static event GenericEventDelegate<ShareRefinementEventArgs>? ShareRefinement;
+
     private static Delegate? GetEventHandler<T>(T e) where T : AbstractEventArgs
     {
         return e.GetType().Name switch
@@ -128,6 +143,9 @@ public static class ServerEvent
             nameof(PlayerTeleportDebugEventArgs) => PlayerTeleportDebug,
             nameof(SortAllItemsEventArgs) => SortAllItems,
             nameof(StartEditTileModelEventArgs) => StartEditTileModel,
+            nameof(StopInteractingWithObjectEventArgs) => StopInteractingWithObject,
+            nameof(VivoxClientEventArgs) => VivoxClient,
+            nameof(ShareRefinementEventArgs) => ShareRefinement,
             _ => null
         };
     }
