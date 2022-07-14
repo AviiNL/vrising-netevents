@@ -152,6 +152,17 @@ public static class ServerEvent
     /// </summary>
     public static event GenericEventDelegate<CharacterRespawnEventArgs>? CharacterRespawn;
 
+    /// <summary>
+    /// This event is fired when a player tries to craft an item.
+    /// Also triggers when a player does not have the required materials.
+    /// </summary>
+    public static event GenericEventDelegate<StartCraftItemEventArgs>? StartCraftItem;
+
+    /// <summary>
+    /// This event is fired when a player pressed "Compulsively Count" in their inventory.
+    /// </summary>
+    public static event GenericEventDelegate<SmartMergeItemsBetweenInventoriesEventArgs>? SmartMergeItemsBetweenInventories;
+
     private static Delegate? GetEventHandler<T>(T e) where T : AbstractEventArgs
     {
         return e.GetType().Name switch
@@ -170,6 +181,7 @@ public static class ServerEvent
             nameof(BecomeObserverEventArgs) => BecomeObserver,
             nameof(BuildTileModelEventArgs) => BuildTileModel,
             nameof(DropItemAtSlotEventArgs) => DropItemAtSlot,
+            nameof(StartCraftItemEventArgs) => StartCraftItem,
             nameof(UserKillServerEventArgs) => UserKillServer,
             nameof(EnterShapeshiftEventArgs) => EnterShapeshift,
             nameof(ShareRefinementEventArgs) => ShareRefinement,
@@ -184,6 +196,7 @@ public static class ServerEvent
             nameof(StopInteractingWithObjectEventArgs) => StopInteractingWithObject,
             nameof(MoveItemBetweenInventoriesEventArgs) => MoveItemBetweenInventories,
             nameof(MoveAllItemsBetweenInventoriesEventArgs) => MoveAllItemsBetweenInventories,
+            nameof(SmartMergeItemsBetweenInventoriesEventArgs) => SmartMergeItemsBetweenInventories,
             _ => null
         };
     }
