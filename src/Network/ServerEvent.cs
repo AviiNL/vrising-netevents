@@ -130,6 +130,16 @@ public static class ServerEvent
     /// </summary>
     public static event GenericEventDelegate<UnequipItemEventArgs>? UnequipItem;
 
+    /// <summary>
+    /// This event is fired when a player uses default action (left ctrl) eg, exit shapeshift
+    /// </summary>
+    public static event GenericEventDelegate<UseDefaultActionEventArgs>? UseDefaultAction;
+
+    /// <summary>
+    /// This event is fired when a player enters a shapeshift form
+    /// </summary>
+    public static event GenericEventDelegate<EnterShapeshiftEventArgs>? EnterShapeshift;
+
     private static Delegate? GetEventHandler<T>(T e) where T : AbstractEventArgs
     {
         return e.GetType().Name switch
@@ -148,7 +158,9 @@ public static class ServerEvent
             nameof(BuildTileModelEventArgs) => BuildTileModel,
             nameof(DropItemAtSlotEventArgs) => DropItemAtSlot,
             nameof(UserKillServerEventArgs) => UserKillServer,
+            nameof(EnterShapeshiftEventArgs) => EnterShapeshift,
             nameof(ShareRefinementEventArgs) => ShareRefinement,
+            nameof(UseDefaultActionEventArgs) => UseDefaultAction,
             nameof(UserDownedServerEventArgs) => UserDownedServer,
             nameof(DropInventoryItemEventArgs) => DropInventoryItem,
             nameof(CreateClan_RequestEventArgs) => CreateClan_Request,
