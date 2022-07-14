@@ -1,3 +1,4 @@
+using ProjectM;
 using ProjectM.Network;
 using Stunlock.Network;
 
@@ -14,5 +15,10 @@ public static class NetBufferInExtensions
             Index = index,
             Generation = generation
         };
+    }
+
+    public static PrefabGUID ReadPrefabGUID(this NetBufferIn self)
+    {
+        return new PrefabGUID((int)self.ReadUInt32());
     }
 }

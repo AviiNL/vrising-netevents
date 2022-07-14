@@ -12,7 +12,7 @@ internal class ActivateVBloodAbilityEventFactory : IIncomingNetworkEventFactory
 
     public AbstractEventArgs Build(IncomingNetworkEvent networkEvent)
     {
-        var prefabGUID = new PrefabGUID((int)networkEvent.NetBufferIn.ReadUInt32());
+        var prefabGUID = networkEvent.NetBufferIn.ReadPrefabGUID();
         var primarySlot = networkEvent.NetBufferIn.ReadBoolean();
 
         var activateVBloodAbilityEvent = new ActivateVBloodAbilityEventArgs(

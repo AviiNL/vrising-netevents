@@ -15,7 +15,7 @@ internal class BuildTileModelEventFactory : IIncomingNetworkEventFactory
     {
         var netBufferIn = networkEvent.NetBufferIn;
 
-        var prefabGuid = new PrefabGUID((int)netBufferIn.ReadUInt32());
+        var prefabGuid = netBufferIn.ReadPrefabGUID();
         var x = netBufferIn.ReadFloat();
         var y = netBufferIn.ReadFloat();
         var z = netBufferIn.ReadFloat();
