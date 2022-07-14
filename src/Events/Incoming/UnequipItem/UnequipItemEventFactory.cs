@@ -1,7 +1,6 @@
 using NetEvents.Network.Interfaces;
 using NetEvents.Network.Models;
 using ProjectM;
-using ProjectM.Network;
 
 namespace NetEvents.Events.Incoming.UnequipItem;
 

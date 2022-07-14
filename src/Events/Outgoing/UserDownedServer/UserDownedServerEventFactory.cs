@@ -1,8 +1,6 @@
-﻿using NetEvents.Network;
-using NetEvents.Network.Interfaces;
+﻿using NetEvents.Network.Interfaces;
 using NetEvents.Network.Models;
 using NetEvents.Utils;
-using ProjectM;
 using ProjectM.Network;
 
 namespace NetEvents.Events.Outgoing.UserDownedServer

@@ -1,7 +1,5 @@
-﻿using NetEvents.Network;
-using NetEvents.Network.Interfaces;
+﻿using NetEvents.Network.Interfaces;
 using NetEvents.Network.Models;
-using ProjectM.Network;
 
 namespace NetEvents.Events.Incoming.ChatMessage;
 

@@ -1,16 +1,10 @@
 using System;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using BepInEx.IL2CPP.Hook;
-using ProjectM;
 using ProjectM.Network;
 using NetEvents.Utils;
 using Stunlock.Network;
 using static NetworkEvents_Serialize;
-using static ProjectM.Network.ClanEvents_Client;
-using static ProjectM.Network.ClanEvents_Server;
-using static ProjectM.Network.InteractEvents_Client;
-using static ProjectM.TeleportEvents_ToServer;
 using NetEvents.Network.Models;
 using Unity.Entities;
 
@@ -22,7 +16,7 @@ internal static class SerializationHooks
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void SerializeEvent(IntPtr entityManager, UInt64 networkEventType, UInt64 netBufferOut, IntPtr entity);
     public static SerializeEvent? SerializeOriginal;
-    
+
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void DeserializeEvent(IntPtr commandBuffer, IntPtr netBuffer, DeserializeNetworkEventParams eventParams);
     public static DeserializeEvent? DeserializeOriginal;

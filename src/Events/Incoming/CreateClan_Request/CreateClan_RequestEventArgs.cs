@@ -1,6 +1,3 @@
-using ProjectM.Network;
-using Unity.Collections;
-
 namespace NetEvents.Events;
 
 public class CreateClan_RequestEventArgs : AbstractIncomingEventArgs

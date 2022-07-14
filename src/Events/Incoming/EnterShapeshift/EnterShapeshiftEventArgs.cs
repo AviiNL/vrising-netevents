@@ -1,5 +1,4 @@
 using ProjectM;
-using ProjectM.Network;
 
 namespace NetEvents.Events;
 

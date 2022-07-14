@@ -1,5 +1,3 @@
-using Unity.Entities;
-
 namespace NetEvents.Events;
 
 public abstract class AbstractEventArgs

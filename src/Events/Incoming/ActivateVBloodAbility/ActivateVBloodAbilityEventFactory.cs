@@ -1,7 +1,5 @@
-using NetEvents.Network;
 using NetEvents.Network.Interfaces;
 using NetEvents.Network.Models;
-using ProjectM;
 
 namespace NetEvents.Events.Incoming.ActivateVBloodAbility;
 

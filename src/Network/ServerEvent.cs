@@ -1,5 +1,6 @@
 using System;
 using NetEvents.Events;
+
 namespace NetEvents.Network;
 
 public static class ServerEvent

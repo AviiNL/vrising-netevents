@@ -1,4 +1,3 @@
-using NetEvents.Network;
 using NetEvents.Network.Interfaces;
 using NetEvents.Network.Models;
 
